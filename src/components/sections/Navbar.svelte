@@ -37,7 +37,7 @@
     <!-- Dark Light Mode  Toggle Menu-->
     <!-- <DarkLightModeMenu /> -->
     <!-- User Menu -->
-    {#if $General.userLogged.id}
+    {#if $General?.userLogged?.id}
       <UserMenu />
     {/if}
   </div>

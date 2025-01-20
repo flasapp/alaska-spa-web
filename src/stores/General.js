@@ -1,4 +1,5 @@
 import { writable } from "svelte/store"
+import { get } from "@/lib/methods/api.js"
 
 const GeneralSettings = writable({
 	theme: "light",
@@ -16,6 +17,25 @@ const GeneralSettings = writable({
 	selectedProduct: {},
 	selectedCategory: {},
 })
+
+export const getCategories = async () => {
+	// const response = await fetch('http://localhost:3000/api/categories')
+	let results = await get('categories')
+    let categories = results?.data.map((category) => {
+		return {
+			id: category.idCategoria,
+			name: category.nombre,
+			url: '/categories/' + category.nombre.replace(/\s/g, "-").toLowerCase() + "?catSku=" + category.idCategoria,
+		};
+    });
+
+	GeneralSettings.update((settings) => {
+		settings.categories = categories
+		return categories
+	})
+
+	return categories
+}
 
 export const logOut = () => {
 	localStorage.setItem('userLogged', JSON.stringify({}))

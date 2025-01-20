@@ -7,7 +7,7 @@
   let user = {}
 
   GeneralSettings.subscribe(state => {
-    if(state.userLogged.id){
+    if(state?.userLogged?.id){
       showLoginModal = false
       user = state.userLogged
     } 

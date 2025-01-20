@@ -1,7 +1,8 @@
 <script>
 	// Utils
 	// import { get } from "@/lib/api/methods-local"
-	import GeneralStore from "../../stores/General";
+	import GeneralStore, { getCategories } from "@/stores/General";
+	console.log("🚀  --> GeneralStore:", GeneralStore)
 	import { onMount } from 'svelte';
 
 	let categories = []
@@ -24,7 +25,8 @@
 
 	onMount(async ()=>{
 		//Get categories
-		// categories = await get('/api/categories')
+		categories = await getCategories()
+		console.log("🚀  --> categories:", categories)
 	})
 	
 </script>
