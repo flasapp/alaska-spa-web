@@ -9,9 +9,7 @@
 </script>
 
 <InfoSection {title} {breadcrumbs}>
-  <div class="justify-center">
-    <img src="{img}" alt="Imagen de horarios">
-  </div>
+  <img src="{img}" alt="Imagen de horarios">
   <hr><br>
   <p class="font-medium">
     Estamos esperándote en nuestro local de San José 1290, Montevideo.

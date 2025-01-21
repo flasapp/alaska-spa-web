@@ -20,7 +20,7 @@
   </nav> 
   <nav>
     <h6 class="footer-title">Alaska</h6> 
-    <a use:link class="link link-hover" href="/schedule">Nosotros</a>
+    <a use:link class="link link-hover" href="/about">Nosotros</a>
     <a use:link class="link link-hover" href="/contact">Contáctanos</a>
   </nav> 
   <!-- <nav>

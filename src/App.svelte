@@ -5,13 +5,14 @@
   import Layout from '@/Layout.svelte';
   import Home from '@/routes/home/Home.svelte';
   import Schedule from '@/routes/schedule/Schedule.svelte';
+  import Delivery from '@/routes/delivery/Delivery.svelte';
 </script>
 
 <Router>
 <Layout>
     <Route path="/" component={Home} />
     <Route path="/about" component={Schedule} />
-    <Route path="/delivery" component={Schedule} />
+    <Route path="/delivery" component={Delivery} />
 </Layout>
 </Router>
 <!-- <main>
