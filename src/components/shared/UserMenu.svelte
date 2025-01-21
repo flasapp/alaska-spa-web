@@ -3,12 +3,12 @@
 	// import { goto } from '$app/navigation';
 	import UserIcon from "@/components/shared/icons/UserNoFill.svelte"
 
-	import { push } from 'svelte-spa-router';
+	// import { push } from 'svelte-spa-router';
 
 	const handleLogout = () => {
 		$GeneralSettings.userLogged = {}
 		logOut()
-		push('/')
+		// push('/')
 	}
 </script>
 <div class="dropdown dropdown-end">
