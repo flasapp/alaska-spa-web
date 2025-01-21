@@ -2,7 +2,7 @@
   // Configurations
   const { VITE_IMAGES_PATH } = import.meta.env;
   // Utils
-  // import { get } from "@/lib/api/methods-local"
+  import { get } from "@/lib/methods/api"
   import GeneralStore from "../../stores/General";
   import { onMount } from "svelte";
   //Components
@@ -30,64 +30,20 @@
   }
 
   async function getFeaturedProducts() {
-    products = [
-    {
-        "id": 1031,
-        "title": "Camarón pelado chico Ártico",
-        "description": "Bandeja 300g",
-        "image": "Camaron pelado chico.jpg",
-        "price": 260,
-        "sale": true,
-        "url": "camarón-pelado-chico-ártico?sku=1031"
-    },
-    {
-        "id": 1086,
-        "title": "GUACAMOLE",
-        "description": "450 GRS",
-        "image": "38.jpg",
-        "price": 345,
-        "sale": true,
-        "url": "guacamole?sku=1086"
-    },
-    {
-        "id": 444,
-        "title": "Noisettes pommuni",
-        "description": "1 Kg.",
-        "image": "ECOFROST Noisettes 1.jpg",
-        "price": 175,
-        "sale": true,
-        "url": "noisettes-pommuni?sku=444"
-    },
-    {
-        "id": 248,
-        "title": "Papas fritas bastón I LAMB WESTON",
-        "description": "2,5 Kg. - 9mm - Corte Tradicional.",
-        "image": "lambweston papas 2.5.jpg",
-        "price": 290,
-        "sale": true,
-        "url": "papas-fritas-bastón-i-lamb-weston?sku=248"
-    },
-    {
-        "id": 993,
-        "title": "Tarta de Jamon y Queso Blé",
-        "description": "Tarta de 700 grs.",
-        "image": "Tarta de Jamon y Queso2.jpg",
-        "price": 385,
-        "sale": true,
-        "url": "tarta-de-jamon-y-queso-blé?sku=993"
-    },
-    {
-        "id": 1040,
-        "title": "Tortillas originales",
-        "description": "8 unidades chicas",
-        "image": "ORIGINAL X8.jpg",
-        "price": 145,
-        "sale": true,
-        "url": "tortillas-originales?sku=1040"
-    }
-]
-    // products = await get("/api/products/featured")
-    return products
+    let resp = await get("products/featured")
+    products = resp.data.map( (product)=>{
+			return {
+				id: product.idProducto,
+				title: product.nombre,
+				description: product.descripcion,
+				image: product.foto,
+				price: product.precio,
+				category: product.nombre_categoria,
+        sale: product.oferta == 1,
+        url: product?.nombre?.replace(/\s/g, '-').toLowerCase() + '?sku=' + product.idProducto
+			}	
+		})
+    return products.data
   }
 
   onMount(async () => {

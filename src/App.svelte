@@ -8,33 +8,20 @@
 </script>
 
 
-<Layout>
-  <Router routes={{
-    '/': Home,
-    '/about': Schedule,
-    '/delivery': Schedule
-    // '/blog/:blogName': Blog
-  }} />
-</Layout>
-<!-- <main>
-  NAV:
-  <nav>
-    <a use:link href="/">Home</a>
-    <a use:link href="/about">About</a>
-  </nav>
 
-  <button class="btn">Daisy button</button>
+<main>
+  <Layout>
+    <Router
+      routes={{
+        '/': Home,
+        '/about': Schedule,
+        '/delivery': Schedule
+        // '/blog/:blogName': Blog
+      }} 
+    />
+  </Layout>
 
-  <Router routes={{
-    '/': Home,
-    '/about': Schedule
-    // '/blog/:blogName': Blog
-  }} />
-
-  <hr>
-  LOCATION : {$location}
-
-</main> -->
+</main>
 
 <style>
 </style>

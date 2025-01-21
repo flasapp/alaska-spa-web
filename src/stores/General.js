@@ -1,5 +1,5 @@
 import { writable } from "svelte/store"
-import { get } from "@/lib/methods/api.js"
+import { get } from "@/lib/methods/api"
 
 const GeneralSettings = writable({
 	theme: "light",
