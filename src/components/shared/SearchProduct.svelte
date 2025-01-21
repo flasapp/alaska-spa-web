@@ -57,9 +57,11 @@
     }
   }
   onMount(() => {
+    document.querySelector('#searchProductInput').focus();
     if($General.searchingName){
       productName = $General.searchingName;
       searchProductsByName();
+      //focus programatically the input
     }
   });
   onDestroy(() => {
@@ -90,8 +92,8 @@
               class="block w-full appearance-none bg-transparent py-4 pl-4 pr-12 text-base text-slate-900 placeholder:text-slate-600 focus:outline-none sm:text-sm sm:leading-6"
               placeholder="Buscar producto..."
               style="caret-color: rgb(107, 114, 128);"
-              autofocus
               type="text"
+              id="searchProductInput"
               bind:value={productName}
               on:keyup={delay(searchProductsByName, 500)}
               on:blur={hideMe}

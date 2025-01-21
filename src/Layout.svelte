@@ -18,7 +18,6 @@
   let seachingProducts = false;
 
   GeneralStore.subscribe((data) => {
-    console.log("🚀  --> data:", data)
     //This callback will be triggered everytime the store changes
     seachingProducts = data.searchingProducts;
 

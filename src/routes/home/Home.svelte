@@ -13,7 +13,7 @@
 
 </script>
 
-<Header title="{$GeneralStore.title}">
+<Header>
 	<CompanyInfo />
 </Header>
 <FeaturedProducts />

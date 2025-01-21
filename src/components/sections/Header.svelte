@@ -6,7 +6,7 @@
 	import Slider from "../shared/Slider.svelte";
 	import GradientTitle from "../shared/GradientTitle.svelte";
 	
-	export let title = "Business shopping cart"
+	export let title = "Alaska Congelados"
 
 	function toggleSearchingProdcuts(event){
 		// event.stopPropagation();
