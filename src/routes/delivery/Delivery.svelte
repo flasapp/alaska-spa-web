@@ -28,7 +28,7 @@
 
 	onMount(async () => {
 		// if ($GeneralStore.neighbourhoods.length == 0) {
-		neighbourhoodsPromise = await getneighbourhoods();
+		neighbourhoodsPromise = getneighbourhoods();
 		// }
 	});
 </script>
@@ -68,7 +68,21 @@
 	<p class="mt-4 font-medium text-secondary">Aceptamos tarjetas de crédito/débito a domicilio</p>
 	<div class="divider divider-primary mt-8">Mínimo de compra por Barrio</div>
 	{#await neighbourhoodsPromise}
-		<p>Cargando...</p>
+		<div class="w-full" style="min-height: 50px">
+		<div class="flex gap-4 items-center">
+			<div class="skeleton h-20 w-1/5 rounded-md"></div>
+			<div class="skeleton h-20 w-1/5 rounded-md"></div>
+			<div class="skeleton h-20 w-1/5 rounded-md"></div>
+			<div class="skeleton h-20 w-1/5 rounded-md"></div>
+		</div>
+		<br>
+		<div class="flex gap-4 items-center">
+			<div class="skeleton h-20 w-1/5 rounded-md"></div>
+			<div class="skeleton h-20 w-1/5 rounded-md"></div>
+			<div class="skeleton h-20 w-1/5 rounded-md"></div>
+			<div class="skeleton h-20 w-1/5 rounded-md"></div>
+		</div>
+	</div>
 	{:then}
 		<div
 		class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 justify-between bg-base-100 rounded mt-8"
