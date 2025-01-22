@@ -1,19 +1,35 @@
 <script>
 
-  // import Router, {location, link} from 'svelte-spa-router';
-  import { Router, Route, Link } from 'svelte-routing';
+  import { fade, fly } from "svelte/transition";
+  import { Router, Route } from 'svelte-routing';
   import Layout from '@/Layout.svelte';
   import Home from '@/routes/home/Home.svelte';
   import Schedule from '@/routes/schedule/Schedule.svelte';
   import Delivery from '@/routes/delivery/Delivery.svelte';
+  import Contact from '@/routes/contact/Contact.svelte';
+
 </script>
 
-<Router>
-<Layout>
-    <Route path="/" component={Home} />
-    <Route path="/about" component={Schedule} />
-    <Route path="/delivery" component={Delivery} />
-</Layout>
+<Router 
+  viewtransition="{() => ({ fn: fade, duration: 300, delay: 500 })}"
+  >
+  <Layout>
+    <!-- {#key currentPath}
+      <div
+        in:fly={{ x: -200, duration: 300, delay: 300 }}
+        out:fly={{ x: 200, duration: 300 }}
+      >
+        <Route path="/" component={Home} />
+        <Route path="/about" component={Schedule} />
+        <Route path="/delivery" component={Delivery} />
+        <Route path="/contact" component={Contact} />
+      </div>
+    {/key} -->
+      <Route path="/" component={Home} />
+      <Route path="/about" component={Schedule} />
+      <Route path="/delivery" component={Delivery} />
+      <Route path="/contact" component={Contact} />
+  </Layout>
 </Router>
 <!-- <main>
   NAV:

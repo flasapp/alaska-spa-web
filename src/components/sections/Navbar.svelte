@@ -1,4 +1,5 @@
 <script>
+  import { link } from "svelte-routing";
   //Utils
   import General from "../../stores/General.js";
   //Components
@@ -21,6 +22,7 @@
   <!-- Title Section -->
   <div class="navbar-center">
     <a
+      use:link
       class="btn btn-ghost text-xl logo"
       href="/"
       style="font-variant:all-petite-caps; letter-spacing: 2px;"
