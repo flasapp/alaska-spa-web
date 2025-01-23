@@ -63,7 +63,7 @@
             class="skeleton h-full w-full rounded-md"
           ></div>
           <img
-            style="opacity: {loadingImage ? 0 : 1} max-height: 320px;"
+            style="opacity: {loadingImage ? 0 : 1} max-height: 320px; aspect-ratio: 1 / 1;"
             id="product-image-{product.id}"
             src={VITE_IMAGES_PATH + product.image}
             alt={product.title + product.description}

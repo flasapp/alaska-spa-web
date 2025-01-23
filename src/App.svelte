@@ -7,6 +7,9 @@
   import Schedule from '@/routes/schedule/Schedule.svelte';
   import Delivery from '@/routes/delivery/Delivery.svelte';
   import Contact from '@/routes/contact/Contact.svelte';
+  import Payments from '@/routes/payments/Payments.svelte';
+  import Checkout from '@/routes/checkout/Checkout.svelte';
+  import Product from '@/routes/Products/Product.svelte';
 
   router.subscribe( _ => window.scrollTo(0, 0));
 
@@ -20,8 +23,12 @@
       >
         <Route path="/"><Home /></Route>
         <Route path="/about"><Schedule/></Route>
+        <Route path="/schedule"><Schedule/></Route>
         <Route path="/delivery"><Delivery/></Route>
         <Route path="/contact"><Contact/></Route>
+        <Route path="/payments"><Payments/></Route>
+        <Route path="/checkout"><Checkout/></Route>
+        <Route path="/products/:name"><Product/></Route>
       </div>
     {/key}
   </Layout>

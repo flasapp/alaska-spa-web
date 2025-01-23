@@ -20,6 +20,7 @@
     "vite-plugin-create-file": "^0.2.0"
   },
   "dependencies": {
+    "canvas-confetti": "^1.9.3",
     "pinia": "^2.3.1"
   }
 }

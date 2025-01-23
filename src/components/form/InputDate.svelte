@@ -13,6 +13,10 @@
 
 	let type = 'date'
 
+	const handleKeydown = e => {
+		return false
+	};
+
 	const handleInput = e => {
 		// in here, you can switch on type and implement
 		// whatever behaviour you need
@@ -28,7 +32,7 @@
 <label class="input input-bordered flex items-center gap-2 {invalidInput ? 'input-error' : ''}">
 	<svelte:component this={icon} />
 	<!-- bind:value={value} -->
-	<input type="date" onkeydown="return false" min={minDate} {placeholder} on:input={handleInput} value={value} class="grow"   />
+	<input type="date" onkeydown="{handleKeydown}" min={minDate} {placeholder} oninput={handleInput} value={value} class="grow"   />
 </label>
 
 <style>

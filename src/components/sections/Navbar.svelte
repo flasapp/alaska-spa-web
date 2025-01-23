@@ -1,5 +1,4 @@
 <script>
-  import { link } from "svelte-routing";
   //Utils
   import General from "../../stores/General.js";
   //Components
