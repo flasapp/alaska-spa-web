@@ -4,7 +4,7 @@
   import GeneralStore from "@/stores/General";
   //Core
   import { onMount } from "svelte";
-  import {meta} from 'tinro';
+  import { meta } from 'tinro';
   //Components
   import ProductCard from "@/components/shared/ProductCard.svelte";
   import FeaturedProducts from "@/components/sections/FeaturedProdcuts.svelte";
@@ -21,9 +21,8 @@
   });
 
   async function getProduct(id) {
-    let resp = await get(`products/${id}`);
+    let resp = await get(`product/${id}`);
     if (resp) {
-    console.log("🚀  --> resp:", resp)
 		let prod = resp.data.map( (product)=>{
 			return {
 				id: product.idProducto,
@@ -49,9 +48,7 @@
     if($GeneralStore.selectedProduct?.id){
       	product = $GeneralStore.selectedProduct;
     } else{
-		console.log("route = ",route)
 		const sku =route.query.sku;
-		console.log("🚀  --> sku:", sku)
 		getProduct(sku)
     } 
 

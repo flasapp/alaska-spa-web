@@ -2,7 +2,7 @@ import { get } from "@/lib/methods/api"
 
 
 export async function getFeaturedProducts() {
-	let resp = await get("products/featured")
+	let resp = await get("products-featured")
     console.log("🚀  --> resp:", resp)
     let products = resp.data.map( (product)=>{
 		return {

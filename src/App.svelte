@@ -10,6 +10,7 @@
   import Payments from '@/routes/payments/Payments.svelte';
   import Checkout from '@/routes/checkout/Checkout.svelte';
   import Product from '@/routes/products/Product.svelte';
+  import Category from '@/routes/categories/Category.svelte';
 
   router.subscribe( _ => window.scrollTo(0, 0));
 
@@ -29,6 +30,8 @@
         <Route path="/payments"><Payments/></Route>
         <Route path="/checkout"><Checkout/></Route>
         <Route path="/products/:name"><Product/></Route>
+        <Route path="/categories/:name"><Category/></Route>
+        
       </div>
     {/key}
   </Layout>

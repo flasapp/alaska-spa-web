@@ -30,7 +30,7 @@
   }
 
   async function getFeaturedProducts() {
-    let resp = await get("products/featured")
+    let resp = await get("products-featured")
     products = resp.data.map( (product)=>{
 			return {
 				id: product.idProducto,
