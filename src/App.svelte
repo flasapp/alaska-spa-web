@@ -9,7 +9,7 @@
   import Contact from '@/routes/contact/Contact.svelte';
   import Payments from '@/routes/payments/Payments.svelte';
   import Checkout from '@/routes/checkout/Checkout.svelte';
-  import Product from '@/routes/Products/Product.svelte';
+  import Product from '@/routes/products/Product.svelte';
 
   router.subscribe( _ => window.scrollTo(0, 0));
 
