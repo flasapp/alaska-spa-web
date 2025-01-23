@@ -45,9 +45,9 @@
 	.overlay-dialog dialog{
 		pointer-events: auto;
 		position: fixed;
-		top: 50%;
-		left: 25%;
-		transform: translate(-50%, -50%);
+		top: 25%;
+		/* left: 25%; */
+		/* transform: translate(-50%, -50%); */
 		border-radius: 8px;
 		box-shadow: 0 0 10px rgba(0,0,0,.5);
 		padding: 40px;
