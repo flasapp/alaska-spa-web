@@ -1,6 +1,4 @@
 <script>
-  // import { link } from 'svelte-spa-router';
-  import { links, link } from 'svelte-routing';
   
 
 </script>
@@ -12,16 +10,15 @@
 	  <p>Teléfono: 29015219</p>
 	  <p>Email: alaskacongelaods@gmail.com</p>
   </aside> 
-  <nav use:links>
+  <nav s>
     <h6 class="footer-title">Información</h6>
-    <!-- <Link to="/delivery">scheduleeee</Link> -->
     <a class="link link-hover" href="/delivery">Envíos gratuitos</a>
     <a class="link link-hover" href="/delivery">Barrios</a>
   </nav> 
   <nav>
     <h6 class="footer-title">Alaska</h6> 
-    <a use:link class="link link-hover" href="/about">Nosotros</a>
-    <a use:link class="link link-hover" href="/contact">Contáctanos</a>
+    <a  class="link link-hover" href="/about">Nosotros</a>
+    <a  class="link link-hover" href="/contact">Contáctanos</a>
   </nav> 
   <!-- <nav>
     <h6 class="footer-title">Legal</h6> 

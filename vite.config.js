@@ -6,26 +6,7 @@ import createFile from 'vite-plugin-create-file';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    svelte(),
-    createFile({
-      files: [
-        {
-          fileName: '.htaccess',
-          content: `
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>
-          `.trim(),
-        },
-      ],
-    }),
-  ],
+  plugins: [svelte()],
   resolve: {
     alias: {
 			'@': path.resolve(__dirname, './src'),

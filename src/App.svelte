@@ -1,41 +1,36 @@
 <script>
 
   import { fade, fly } from "svelte/transition";
-  import { Router, Route } from 'svelte-routing';
+  import { Route, router } from 'tinro'; 
   import Layout from '@/Layout.svelte';
   import Home from '@/routes/home/Home.svelte';
   import Schedule from '@/routes/schedule/Schedule.svelte';
   import Delivery from '@/routes/delivery/Delivery.svelte';
   import Contact from '@/routes/contact/Contact.svelte';
 
+  router.subscribe( _ => window.scrollTo(0, 0));
+
 </script>
 
-<Router 
-  viewtransition="{() => ({ fn: fade, duration: 300, delay: 500 })}"
-  >
   <Layout>
-    <!-- {#key currentPath}
+    {#key $router.path}
       <div
-        in:fly={{ x: -200, duration: 300, delay: 300 }}
-        out:fly={{ x: 200, duration: 300 }}
+        in:fly={{ y: -200, duration: 500, delay: 500 }}
+        out:fly={{ x: -200, duration: 500 }}
       >
-        <Route path="/" component={Home} />
-        <Route path="/about" component={Schedule} />
-        <Route path="/delivery" component={Delivery} />
-        <Route path="/contact" component={Contact} />
+        <Route path="/"><Home /></Route>
+        <Route path="/about"><Schedule/></Route>
+        <Route path="/delivery"><Delivery/></Route>
+        <Route path="/contact"><Contact/></Route>
       </div>
-    {/key} -->
-      <Route path="/" component={Home} />
-      <Route path="/about" component={Schedule} />
-      <Route path="/delivery" component={Delivery} />
-      <Route path="/contact" component={Contact} />
+    {/key}
   </Layout>
-</Router>
+
 <!-- <main>
   NAV:
   <nav>
-    <a use:link href="/">Home</a>
-    <a use:link href="/about">About</a>
+    <a  href="/">Home</a>
+    <a  href="/about">About</a>
   </nav>
 
   <button class="btn">Daisy button</button>
