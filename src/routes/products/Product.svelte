@@ -22,8 +22,9 @@
 
   async function getProduct(id) {
     let resp = await get(`product/${id}`);
-    if (resp) {
-      let prod = resp.data.map( (product)=>{
+    let prod = [{}]
+    if (resp.data) {
+      prod = resp.data.map( (product)=>{
         return {
           id: product.idProducto,
           title: product.nombre,
@@ -46,9 +47,9 @@
     if($GeneralStore.selectedProduct?.id){
       	product = $GeneralStore.selectedProduct;
     } else{
-      const sku =route.query.sku;
-      product = await getProduct(sku)
-      console.log("product = ",product)
+      const sku =route.query.sku
+      product = {}
+      product = await getProduct(sku);
     } 
 
     if($GeneralStore.searchingProductsList?.length > 0){
@@ -60,7 +61,7 @@
 {#if product?.id}
   <ProductCard {product} {fullWidth} />
 {:else}
-  <div class="flex flex-col gap-4 w-72 w-1/2 m-auto">
+  <div class="flex flex-col gap-4 w-72 w-1/2 m-auto mt-16">
       <div class="skeleton h-80 w-full rounded-md"></div>
       <div class="skeleton h-8 w-28 rounded-md"></div>
       <div class="skeleton h-6 w-56 rounded-md"></div>

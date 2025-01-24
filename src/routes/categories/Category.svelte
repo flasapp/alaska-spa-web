@@ -8,6 +8,7 @@
 	import GeneralStore from "@/stores/General";
 	//Components
 	import ProductCard from "@/components/shared/ProductCard.svelte";
+	import EmptyCategory from "@/assets/images/empty_category.svg"
 
 	const route = meta();
 
@@ -40,20 +41,22 @@
 
 	async function getProductsByCategory(id) {
 		products = [];
-		console.log("en funcion")
 		let resp = await get(`products-category/${id}`);
-		let data = resp.data.map( (product)=>{
-			return {
-				id: product.idProducto,
-				title: product.nombre,
-				description: product.descripcion,
-				image: product.foto,
-				price: product.precio,
-				category: product.nombre_categoria,
-				sale: product.oferta == 1,
-		        url: product?.nombre?.replace(/\s/g, '-').toLowerCase() + '?sku=' + product.idProducto
-			}	
-		})
+		let data = []
+		if(resp.data){
+			data = resp.data.map( (product)=>{
+				return {
+					id: product.idProducto,
+					title: product.nombre,
+					description: product.descripcion,
+					image: product.foto,
+					price: product.precio,
+					category: product.nombre_categoria,
+					sale: product.oferta == 1,
+					url: product?.nombre?.replace(/\s/g, '-').toLowerCase() + '?sku=' + product.idProducto
+				}	
+			})
+		}
 		products = data;
 		$GeneralStore.searchingProductsList = products;
 	}
@@ -70,7 +73,6 @@
 	};
 
 	onMount(async () => {
-		console.log("MOUNT")
 		//First check if the category is already loaded
 		if (catSku && !$GeneralStore.selectedCategory.id) {
 			categoryPromise = getCategory(catSku);
@@ -189,8 +191,12 @@
 			{/each}
 			</div>
 		{:else}
-			<p>No se encontraron productos en esta categoría</p>
-		{/if}
+            <div class="flex flex-col items-center justify-center text-center">
+                <img src="{EmptyCategory}" alt="Categoria sin productos" class="w-full md:w-1/2 mb-4"/>
+                <p>No se encontraron productos en esta categoría</p>
+                <small>La categoría {category?.name} no tiene productos en este momento.</small>
+            </div>
+        {/if}
 	{:catch error}
 		<p>{error.text}</p>
 	{/await}

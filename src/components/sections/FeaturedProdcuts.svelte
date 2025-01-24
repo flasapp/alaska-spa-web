@@ -18,15 +18,18 @@
   let loadingProducts = true
   let productsPromise = null
   let hideFeatured = false
-
+  let widthToMove = window.innerWidth < 768 ? 200 : 400; //if is in mobile change widthToMove to 200 (size of each element of carrousel)
+  
   function slideLeft() {
     const slider = document.getElementById("slider-container");
-    slider.scrollLeft -= 400;
+    //if is in mobile change widthToMove to 200
+    
+    slider.scrollLeft -= widthToMove;
   }
 
   function slideRight() {
     const slider = document.getElementById("slider-container");
-    slider.scrollLeft += 400;
+    slider.scrollLeft += widthToMove;
   }
 
   async function getFeaturedProducts() {
