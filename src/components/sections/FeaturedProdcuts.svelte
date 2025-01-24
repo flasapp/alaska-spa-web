@@ -22,8 +22,6 @@
   
   function slideLeft() {
     const slider = document.getElementById("slider-container");
-    //if is in mobile change widthToMove to 200
-    
     slider.scrollLeft -= widthToMove;
   }
 
