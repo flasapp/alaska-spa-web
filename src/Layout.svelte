@@ -38,8 +38,8 @@
 {/if}
 
 <div
-  class="w-full mx-auto pt-16"
-  style="position: relative; z-index: {$GeneralStore.searchingProducts ||
+  class="w-full mx-auto"
+  style="padding-top:32px; position: relative; z-index: {$GeneralStore.searchingProducts ||
   $GeneralStore.showingSideBar
     ? 0
     : 0}"

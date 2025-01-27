@@ -15,7 +15,7 @@
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
-<div class="navbar bg-base-100 shadow-lg fixed" style="z-index:1">
+<div class="navbar bg-base-100 shadow-lg fixed top-nav-bar">
   <!-- Button and Sidebar -->
   <Sidebar />
   <!-- Title Section -->
@@ -56,5 +56,13 @@
   }
   .logo:hover{
     background: transparent;
+  }
+  .top-nav-bar {
+    z-index:1;
+    width:90%; 
+    margin-left: 5%; 
+    border-radius: 16px; 
+    top: 8px; 
+    padding: 0px 8px;
   }
 </style>
