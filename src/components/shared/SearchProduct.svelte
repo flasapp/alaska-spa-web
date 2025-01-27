@@ -2,7 +2,7 @@
   //Svelte Core
   import { onDestroy, onMount } from "svelte"
   //Components and Stores
-  // import { get } from "@/lib/api/methods-local"
+  import { get } from "@/lib/methods/api"
   import General from "@/stores/General"
 
   const NUMBER_CHAR_TO_SEARCH = 1
@@ -49,9 +49,21 @@
     if (productName?.length > NUMBER_CHAR_TO_SEARCH) {
       loading = true;
       products = [];
-      let resp = []
-      // let resp = await get(`/api/products/search?name=${productName}`)
-      products = resp.length >= 0 ? resp : []
+      // let resp = []
+      let resp = await get(`products-by-name/${productName}`)
+      let productsAux = resp.data.map( (product)=>{
+        return {
+          id: product.idProducto,
+          title: product.nombre,
+          description: product.descripcion,
+          image: product.foto,
+          price: product.precio,
+          category: product.nombre_categoria,
+          sale: product.oferta == 1,
+              url: product?.nombre?.replace(/\s/g, '-').toLowerCase() + '?sku=' + product.idProducto
+        }	
+      })
+      products = productsAux,length ? productsAux : []
       loading = false;
       seachDone = true;
     }
