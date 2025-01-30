@@ -68,7 +68,16 @@
 	}
 
 	async function getneighbourhoods() {
-		neighbourhoods = await get('/api/neighbourhoods/')
+		let resp = await get('settings/neighbourhoods');
+		neighbourhoods = resp?.data?.map( (neigh)=>{
+			return {
+				id: neigh.idBarrio,
+				title: neigh.title,
+				amount: neigh.monto
+			}	
+		})
+		// return neighbourhoods
+		// neighbourhoods = await get('settings/neighbourhoods')
 		$GeneralSettings.neighbourhoods = neighbourhoods
 		
 	}
@@ -107,7 +116,11 @@
 			neighbourhood: +($GeneralSettings.userLogged.address.neighbourhood),
 			
 		}
-		$GeneralSettings.neighbourhoods.length == 0 ? await getneighbourhoods() : neighbourhoods = $GeneralSettings.neighbourhoods
+		if(!$GeneralSettings.neighbourhoods || $GeneralSettings.neighbourhoods.length == 0){
+			await getneighbourhoods()
+		}else{
+			neighbourhoods = $GeneralSettings.neighbourhoods
+		} 
 		searchSelectedNeighbourhood()
 	});
 </script>

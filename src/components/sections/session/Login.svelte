@@ -6,7 +6,7 @@
 	import PasswordIcon from "@/components/shared/icons/Password.svelte"
 	import MailIcon from "@/components/shared/icons/Mail.svelte"
 	//Utils and Stores
-	// import { post } from "@/lib/api/methods-local"
+	import { post } from "@/lib/methods/api"
 	import GeneralSettings from "@/stores/General"
 	import { addToast } from "@/stores/Toasts"
 
@@ -38,13 +38,28 @@
 	async function login() {
 		submitted = true
 		if(!user.mail || !user.pass) return 
-		let resp = {}
-		// let resp = await post('/api/session/login', user)
+		// let resp = {}
+		let response = await post('login', user)
+		console.log("🚀  --> response:", response)
 		submitted = false
-		if (!resp.id) return addToast({ text: "Email y/o contraseña incorrecta", type: "Error" })
-		setLoggedUser(resp)
+		if (!response.idUsuario) return addToast({ text: "Email y/o contraseña incorrecta", type: "Error" })
+		const userLogged = {
+			id: response.idUsuario,
+			name: response.nomUsuario,
+			lastName: response.apellido,
+			email: response.mail,
+			phone: response.tel,
+			address: {
+				street: response.calle,
+				number: response.numero,
+				depto: response.apto,
+				corner: response.esquina,
+				neighbourhood: response.idBarrio
+			}
+		}
+		setLoggedUser(userLogged)
 		addToast({ text: "Logueado con éxito", type: "success" });
-		return resp;
+		return response;
   	}
 
 
