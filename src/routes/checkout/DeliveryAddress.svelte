@@ -4,7 +4,7 @@
 	import { onMount } from "svelte";
 	//Utils and stores
 	import { get } from "@/lib/methods/api"
-	import GeneralSettings from "@/stores/General"
+	import GeneralStore from "@/stores/General"
 	import { ShoppingCart } from "@/stores/Cart"
 	//Components
 	import Input from "@/components/form/Input.svelte"
@@ -47,13 +47,13 @@
 	$: invalidneighbourhood = delivery.neighbourhood == '' && submitted
 
 	function searchSelectedNeighbourhood(){
-		selectedNeighbourhood = $GeneralSettings.neighbourhoods.find( neigh => neigh.id == $GeneralSettings.userLogged.address.neighbourhood)
+		selectedNeighbourhood = $GeneralStore.neighbourhoods.find( neigh => neigh.id == $GeneralStore.userLogged.address.neighbourhood)
 	}
 
 	function handleChange(field, value){
 
-		if(field == 'phone') return $GeneralSettings.userLogged.phone = value
-		$GeneralSettings.userLogged.address[field] = value
+		if(field == 'phone') return $GeneralStore.userLogged.phone = value
+		$GeneralStore.userLogged.address[field] = value
 		if(field == 'neighbourhood') searchSelectedNeighbourhood()
 
 	}
@@ -78,7 +78,7 @@
 		})
 		// return neighbourhoods
 		// neighbourhoods = await get('settings/neighbourhoods')
-		$GeneralSettings.neighbourhoods = neighbourhoods
+		$GeneralStore.neighbourhoods = neighbourhoods
 		
 	}
 
@@ -93,12 +93,12 @@
 		submitted = true
 		console.log("Delivery: ", delivery)
 		//Refresh userLogged info with the selected one.
-		$GeneralSettings.userLogged.phone = delivery.phone
-		$GeneralSettings.userLogged.address.street = delivery.street
-		$GeneralSettings.userLogged.address.number = delivery.number
-		$GeneralSettings.userLogged.address.corner = delivery.corner
-		$GeneralSettings.userLogged.address.depto = delivery.depto
-		$GeneralSettings.userLogged.address.neighbourhood = delivery.neighbourhood
+		$GeneralStore.userLogged.phone = delivery.phone
+		$GeneralStore.userLogged.address.street = delivery.street
+		$GeneralStore.userLogged.address.number = delivery.number
+		$GeneralStore.userLogged.address.corner = delivery.corner
+		$GeneralStore.userLogged.address.depto = delivery.depto
+		$GeneralStore.userLogged.address.neighbourhood = delivery.neighbourhood
 
 		//Refresh delivery info
 		// refreshShoppingCartStoreAddress()
@@ -106,20 +106,20 @@
 	}
 
 	onMount(async () => {
-		console.log($GeneralSettings.userLogged)
+		console.log($GeneralStore.userLogged)
 		delivery = {
-			phone: $GeneralSettings.userLogged.phone,
-			street: $GeneralSettings.userLogged.address.street,
-			number: $GeneralSettings.userLogged.address.number,
-			corner: $GeneralSettings.userLogged.address.corner,
-			depto: $GeneralSettings.userLogged.address.depto,
-			neighbourhood: +($GeneralSettings.userLogged.address.neighbourhood),
+			phone: $GeneralStore.userLogged.phone,
+			street: $GeneralStore.userLogged.address.street,
+			number: $GeneralStore.userLogged.address.number,
+			corner: $GeneralStore.userLogged.address.corner,
+			depto: $GeneralStore.userLogged.address.depto,
+			neighbourhood: $GeneralStore.userLogged.address.neighbourhood,
 			
 		}
-		if(!$GeneralSettings.neighbourhoods || $GeneralSettings.neighbourhoods.length == 0){
+		if(!$GeneralStore.neighbourhoods || $GeneralStore.neighbourhoods.length == 0){
 			await getneighbourhoods()
 		}else{
-			neighbourhoods = $GeneralSettings.neighbourhoods
+			neighbourhoods = $GeneralStore.neighbourhoods
 		} 
 		searchSelectedNeighbourhood()
 	});
@@ -133,7 +133,7 @@
 		</div> -->
 		<form action="" class="w-full">
 			<div class="form-control grid gap-2 text-left">
-				<!-- Hola {$GeneralSettings.userLogged.name}! tu dir es {delivery.street} {delivery.number} {delivery.corner} {delivery.depto} -->
+				<!-- Hola {$GeneralStore.userLogged.name}! tu dir es {delivery.street} {delivery.number} {delivery.corner} {delivery.depto} -->
 				<Input 
 					placeholder="Teléfono" 
 					bind:value={delivery.phone} 
@@ -169,10 +169,10 @@
 					invalidInput={invalidDepto} 
 					label="Apto"
 					on:changed={handleChange('depto', delivery.depto)}/>
-
+				
 				<label>
 					<div class="label">
-						<span class="label-text">Barrio</span>
+						<span class="label-text">Barrio {delivery.neighbourhood}</span>
 					</div>
 					<select class="select select-bordered w-full" bind:value={delivery.neighbourhood} on:change={handleChange('neighbourhood', delivery.neighbourhood)}>
 						<option disabled selected>Seleccione su barrio</option>

@@ -3,7 +3,7 @@
 	import { fade, fly } from 'svelte/transition';
 	//Utils and stores
 	// import { post } from "@/lib/api/methods-local"
-	import GeneralSettings from "@/stores/General"
+	import GeneralStore from "@/stores/General"
 	import { addToast } from "@/stores/Toasts"
 	//Components
 	import Input from "@/components/form/Input.svelte"
@@ -39,7 +39,7 @@
 	
 	
 	function setLoggedUser(user){
-		if(user) $GeneralSettings.userLogged = user
+		if(user) $GeneralStore.userLogged = user
 	}
 	
 	async function signup(){

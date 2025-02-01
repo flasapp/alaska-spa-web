@@ -3,7 +3,7 @@
   const { VITE_IMAGES_PATH } = import.meta.env;
   // Utils
   import { get } from "@/lib/methods/api"
-  import GeneralStore from "../../stores/General";
+  import GeneralStore from "@/stores/General";
   import { onMount } from "svelte";
   //Components
   import ProductCard from "../shared/ProductCard.svelte";

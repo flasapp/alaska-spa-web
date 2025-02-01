@@ -1,7 +1,7 @@
 import { writable } from "svelte/store"
 import { get } from "@/lib/methods/api"
 
-const GeneralSettings = writable({
+const GeneralStore = writable({
 	theme: "light",
 	language: "es",
 	searchingProducts: false,
@@ -29,9 +29,9 @@ export const getCategories = async () => {
 		};
     });
 
-	GeneralSettings.update((settings) => {
+	GeneralStore.update((settings) => {
 		settings.categories = categories
-		return categories
+		return settings
 	})
 
 	return categories
@@ -45,4 +45,4 @@ export const updateUser = (user) => {
 	localStorage.setItem('userLogged', JSON.stringify(user))
 }
 
-export default GeneralSettings
+export default GeneralStore

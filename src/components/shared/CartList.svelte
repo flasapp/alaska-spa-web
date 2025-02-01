@@ -5,8 +5,8 @@
 	//Svelte core
 
 	//Stores and utils
-	import { ShoppingCart, addProduct, substractProduct } from "../../stores/Cart"
-	import GeneralStore from "../../stores/General"
+	import { ShoppingCart, addProduct, substractProduct } from "@/stores/Cart"
+	import GeneralStore from "@/stores/General"
 	import EmptyCartImage from "../../components/shared/images/Cart.svelte";
 	import InfoIcon from "../../components/shared/icons/Info.svelte"
 

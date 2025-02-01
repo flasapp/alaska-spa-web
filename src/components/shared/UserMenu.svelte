@@ -1,12 +1,12 @@
 <script>
-	import GeneralSettings, { logOut } from "../../stores/General";
+	import GeneralStore, { logOut } from "../../stores/General";
 	// import { goto } from '$app/navigation';
 	import UserIcon from "@/components/shared/icons/UserNoFill.svelte"
 
 	// import { push } from 'svelte-spa-router';
 
 	const handleLogout = () => {
-		$GeneralSettings.userLogged = {}
+		$GeneralStore.userLogged = {}
 		logOut()
 		// push('/')
 	}
@@ -20,7 +20,7 @@
 	</div>
 	<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-base-300 rounded-box w-52 shadow-xl">
 	<li>
-		<b>Hola, {$GeneralSettings.userLogged.name} {$GeneralSettings.userLogged.lastName}</b>
+		<b>Hola, {$GeneralStore.userLogged.name} {$GeneralStore.userLogged.lastName}</b>
 	</li>
 	<li>
 		<a class="justify-between" href="/profile">

@@ -3,7 +3,8 @@
 	//Utils and stores
 	import { get, post } from '@/lib/methods/api' 
 	import { ShoppingCart, restoreStepCart, goNextStep, goPrevStep, resetCart } from "@/stores/Cart"
-	import GeneralSettings from "@/stores/General"
+	import GeneralStore from "@/stores/General"
+	console.log("🚀  --> GeneralStore:", $GeneralStore.userLogged)
 	import { addToast } from "@/stores/Toasts"
 	//Svelte
 	import { onMount } from "svelte"
@@ -16,6 +17,7 @@
 	import BackIcon from "@/components/shared/icons/Back.svelte"
 	import ForwardIcon from "@/components/shared/icons/Forward.svelte"
 	import LoginModal from "@/components/sections/session/LoginModal.svelte"
+
 
 	//Variables
 	let steps = [
@@ -31,23 +33,24 @@
 
 	//Functions
 	const handleLogin = () => {
-		showLoginModal = $GeneralSettings.userLogged.id ? false : showLoginModal
-		if($GeneralSettings.userLogged.id) goForward()
+		showLoginModal = $GeneralStore.userLogged.id ? false : showLoginModal
+		if($GeneralStore.userLogged.id) goForward()
 	}
 	
 	const goForward = () => {
-		if($ShoppingCart.step == 0 && !$GeneralSettings.userLogged?.id){
+		console.log("🚀  --> $GeneralStore:", $GeneralStore)
+		if($ShoppingCart.step == 0 && !$GeneralStore.userLogged.id){
 			showLoginModal = true
-			unsuscribe = GeneralSettings.subscribe(state => {
+			unsuscribe = GeneralStore.subscribe(state => {
 				if(state.userLogged?.id) handleLogin()
 			})
 			return
 		}else if($ShoppingCart.step == 1){
 			// Validations for step 2
-			if(!$GeneralSettings.userLogged.phone) return addToast({ text: "Debe ingresar una teléfono de contacto", type: "Error" })
-			if(!$GeneralSettings.userLogged.address.street) return addToast({ text: "Debe ingresar una calle", type: "Error" })
-			if(!$GeneralSettings.userLogged.address.number) return addToast({ text: "Debe ingresar una número de puerta", type: "Error" })
-			if(!$GeneralSettings.userLogged.address.neighbourhood) return addToast({ text: "Debe ingresar una barrio", type: "Error" })
+			if(!$GeneralStore.userLogged.phone) return addToast({ text: "Debe ingresar una teléfono de contacto", type: "Error" })
+			if(!$GeneralStore.userLogged.address.street) return addToast({ text: "Debe ingresar una calle", type: "Error" })
+			if(!$GeneralStore.userLogged.address.number) return addToast({ text: "Debe ingresar una número de puerta", type: "Error" })
+			if(!$GeneralStore.userLogged.address.neighbourhood) return addToast({ text: "Debe ingresar una barrio", type: "Error" })
 		}else if($ShoppingCart.step == 2){
 			// Validations for step 3
 			console.log("🚀 --> $ShoppingCart.deliveryInfo", $ShoppingCart.deliveryInfo)
@@ -76,9 +79,9 @@
 		// Validate there is an address
 		if(!$ShoppingCart.deliveryInfo.address) return addToast({ text: "Debe seleccionar una dirección de entrega", type: "Error" })
 		// Validate there is a user logged
-		if(!$GeneralSettings.userLogged.id) return addToast({ text: "Debe iniciar sesión para realizar un pedido", type: "Error" })
+		if(!$GeneralStore.userLogged.id) return addToast({ text: "Debe iniciar sesión para realizar un pedido", type: "Error" })
 		// Validate the amount of the card is greater or equal than the neighborhood minimum
-		let neighbourhood = $GeneralSettings.neighbourhoods.find( neigh => neigh.id == $GeneralSettings.userLogged.address.neighbourhood)
+		let neighbourhood = $GeneralStore.neighbourhoods.find( neigh => neigh.id == $GeneralStore.userLogged.address.neighbourhood)
 		if($ShoppingCart.total < neighbourhood.amount) return addToast({ text: `El monto mínimo de compra en <b>${neighbourhood.title}</b> es de <b>$ ${neighbourhood.amount}</b>`, type: "Error" })
 		
 		saving = true
@@ -87,16 +90,16 @@
 			observations: $ShoppingCart.deliveryInfo.schedule.observations,
 			total: $ShoppingCart.total,
 			user: {
-				email: $GeneralSettings.userLogged.email,
-				name: $GeneralSettings.userLogged.name,
-				lastname: $GeneralSettings.userLogged.lastName,
-				phone: $GeneralSettings.userLogged.phone,
-				street: $GeneralSettings.userLogged.address.street,
-				number: $GeneralSettings.userLogged.address.number,
-				corner: $GeneralSettings.userLogged.address.corner,
-				depto: $GeneralSettings.userLogged.address.depto,
-				neighbourhood: $GeneralSettings.userLogged.address.neighbourhood,
-				id: $GeneralSettings.userLogged.id
+				email: $GeneralStore.userLogged.email,
+				name: $GeneralStore.userLogged.name,
+				lastname: $GeneralStore.userLogged.lastName,
+				phone: $GeneralStore.userLogged.phone,
+				street: $GeneralStore.userLogged.address.street,
+				number: $GeneralStore.userLogged.address.number,
+				corner: $GeneralStore.userLogged.address.corner,
+				depto: $GeneralStore.userLogged.address.depto,
+				neighbourhood: $GeneralStore.userLogged.address.neighbourhood,
+				id: $GeneralStore.userLogged.id
 			},
 			schedule: {
 				hour: $ShoppingCart.deliveryInfo.schedule.hour,
@@ -187,7 +190,7 @@
 					{:else}
 						<button 
 							on:click={goForward} 
-							disabled="{$ShoppingCart.step == steps.length - 1 || ($ShoppingCart.step == 1 && !$GeneralSettings.userLogged.id)}" 
+							disabled="{$ShoppingCart.step == steps.length - 1 || ($ShoppingCart.step == 1 && !$GeneralStore.userLogged.id)}" 
 							class="rounded-md font-medium btn btn-primary w-1/2">
 							Continuar <ForwardIcon />
 						</button>

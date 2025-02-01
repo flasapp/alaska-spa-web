@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte'
 	//Utils and stores
 	import { ShoppingCart, goPrevStep, goNextStep } from "../../stores/Cart"
-	import GeneralSettings from "../../stores/General"
+	import GeneralStore from "../../stores/General"
 	//Components
 	import LoginSignup from "../../components/sections/session/LoginSignup.svelte"
 	import DeliveryDate from "./DeliveryDate.svelte"
@@ -16,7 +16,7 @@
 </script>
 <div class="p-4">
 
-	{#if !$GeneralSettings.userLogged.id}
+	{#if !$GeneralStore.userLogged.id}
 		<LoginSignup />
 	{:else}
 		<div class="pointer-events-auto w-full m-auto" >

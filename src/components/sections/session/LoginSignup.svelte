@@ -1,5 +1,5 @@
 <script>
-	import GeneralSettings from "@/stores/General"
+	import GeneralStore from "@/stores/General"
 	import Login from './Login.svelte';
 	import Signup from './Signup.svelte';
 	let active_tab = 0

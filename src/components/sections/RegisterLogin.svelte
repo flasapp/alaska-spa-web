@@ -1,12 +1,12 @@
 <script>
-  import GeneralSettings from "@/stores/General"
+  import GeneralStore from "@/stores/General"
   import LoginModal from './session/LoginModal.svelte'
 
   export let isRegister = true
   let showLoginModal = false
   let user = {}
 
-  GeneralSettings.subscribe(state => {
+  GeneralStore.subscribe(state => {
     if(state?.userLogged?.id){
       showLoginModal = false
       user = state.userLogged

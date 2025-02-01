@@ -55,7 +55,7 @@
   <form action="" class="w-full">
     <img src="{imgContact}" alt="Contáctanos">
     <div class="form-control grid gap-2 text-left p-4">
-      <!-- Hola {$GeneralSettings.userLogged.name}! tu dir es {delivery.street} {delivery.number} {delivery.corner} {delivery.depto} -->
+      <!-- Hola {$GeneralStore.userLogged.name}! tu dir es {delivery.street} {delivery.number} {delivery.corner} {delivery.depto} -->
       <Input 
         placeholder="Nombre" 
         bind:value={contact.name} 

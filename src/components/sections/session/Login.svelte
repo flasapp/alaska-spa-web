@@ -7,7 +7,7 @@
 	import MailIcon from "@/components/shared/icons/Mail.svelte"
 	//Utils and Stores
 	import { post } from "@/lib/methods/api"
-	import GeneralSettings from "@/stores/General"
+	import GeneralStore from "@/stores/General"
 	import { addToast } from "@/stores/Toasts"
 
 	//Local Storage
@@ -30,7 +30,7 @@
 	//Functions
 	function setLoggedUser(user){
 		if(user){
-			$GeneralSettings.userLogged = user
+			$GeneralStore.userLogged = user
 			localStorage.setItem('userLogged', JSON.stringify(user))
 		} 
 	}
