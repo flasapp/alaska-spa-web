@@ -1,5 +1,6 @@
 <script>
-	import GeneralStore, { logOut } from "../../stores/General";
+	import GeneralStore, { logOut } from "@/stores/General";
+	import { ShoppingCart } from "@/stores/Cart";
 	// import { goto } from '$app/navigation';
 	import UserIcon from "@/components/shared/icons/UserNoFill.svelte"
 
@@ -8,6 +9,7 @@
 	const handleLogout = () => {
 		$GeneralStore.userLogged = {}
 		logOut()
+		$ShoppingCart.step = 0;
 		// push('/')
 	}
 </script>

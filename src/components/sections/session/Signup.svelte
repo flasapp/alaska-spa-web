@@ -2,7 +2,7 @@
 	//Core
 	import { fade, fly } from 'svelte/transition';
 	//Utils and stores
-	// import { post } from "@/lib/api/methods-local"
+	import { post } from "@/lib/methods/api"
 	import GeneralStore from "@/stores/General"
 	import { addToast } from "@/stores/Toasts"
 	//Components
@@ -46,15 +46,45 @@
 		//Validations
 		if(!user.name || !user.lastname || !user.phone || !user.mail || !user.pass) return addToast({ text: "Todos los campos son obligatorios", type: "Error" });
 		submitted = true
-		let resp = {}
-		// let resp = await post('/api/session/signup', user)
+		let body = {
+			mail: user.mail,
+			pass: user.pass,
+			nomUsuario: user.name,
+			apellido: user.lastname,
+			tel: user.phone,
+			fechaAlta: new Date().toISOString().split('T')[0]
+		}
+		let resp = await post('signup', body)
 		submitted = false
 		console.log("🚀  --> resp:", resp)
 		if(resp.code){
 			if(resp.code == 'MISSING_INFO') return addToast({ text: "Todos los campos son obligatorios", type: "Error" });
 			if(resp.code == 'USER_EXISTS') return addToast({ text: "Ha ocurrido un error con sus datos, intentelo nuevamente mas tarde", type: "Error" });
-		}else if(resp.id){
-			setLoggedUser(resp)
+		}
+		if(resp.success){
+			let credentials = {
+				mail: user.mail,
+				pass: user.pass
+			}
+			console.log("🚀  --> credentials:", credentials)
+			let respLogin = await post('login', credentials)
+			console.log("🚀  --> respLogin:", respLogin)
+			if (!respLogin.idUsuario) return addToast({ text: "Email y/o contraseña incorrecta", type: "Error" })
+			const userLogged = {
+				id: respLogin.idUsuario,
+				name: respLogin.nomUsuario,
+				lastName: respLogin.apellido,
+				email: respLogin.mail,
+				phone: respLogin.tel,
+				address: {
+					street: respLogin.calle,
+					number: respLogin.numero,
+					depto: respLogin.apto,
+					corner: respLogin.esquina,
+					neighbourhood: respLogin.idBarrio
+				}
+			}
+			setLoggedUser(userLogged)
 			addToast({ text: "Registrado con éxito", type: "success" });
 			return user;
 		}

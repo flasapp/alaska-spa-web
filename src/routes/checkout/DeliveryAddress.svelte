@@ -181,7 +181,7 @@
 						{/each}
 					</select>
 					<div class="label">
-						<span class="label-text-alt"><small class="text-xs font-extralight">Míinimo de compra para este barrio es : $ {selectedNeighbourhood.amount}</small></span>
+						<span class="label-text-alt"><small class="text-xs font-extralight">Míinimo de compra para este barrio es : $ {selectedNeighbourhood?.amount}</small></span>
 					</div>
 				</label>
 				
