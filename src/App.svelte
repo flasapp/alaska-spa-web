@@ -11,6 +11,7 @@
   import Checkout from '@/routes/checkout/Checkout.svelte';
   import Product from '@/routes/products/Product.svelte';
   import Category from '@/routes/categories/Category.svelte';
+  import Profile from '@/routes/profile/Profile.svelte';
 
   router.subscribe( _ => window.scrollTo(0, 0));
 
@@ -23,14 +24,15 @@
         out:fly={{ x: -200, duration: 500 }}
       >
         <Route path="/"><Home /></Route>
-        <Route path="/about"><Schedule/></Route>
-        <Route path="/schedule"><Schedule/></Route>
+        <Route path="/nosotros"><Schedule/></Route>
+        <Route path="/horarios"><Schedule/></Route>
         <Route path="/delivery"><Delivery/></Route>
-        <Route path="/contact"><Contact/></Route>
-        <Route path="/payments"><Payments/></Route>
+        <Route path="/contacto"><Contact/></Route>
+        <Route path="/metodos-de-pago"><Payments/></Route>
         <Route path="/checkout"><Checkout/></Route>
-        <Route path="/products/:name"><Product/></Route>
-        <Route path="/categories/:name"><Category/></Route>
+        <Route path="/productos/:name"><Product/></Route>
+        <Route path="/categorias/:name"><Category/></Route>
+        <Route path="/perfil"><Profile/></Route>
         
       </div>
     {/key}
@@ -40,14 +42,14 @@
   NAV:
   <nav>
     <a  href="/">Home</a>
-    <a  href="/about">About</a>
+    <a  href="/nosotros">About</a>
   </nav>
 
   <button class="btn">Daisy button</button>
 
   <Router routes={{
     '/': Home,
-    '/about': Schedule
+    '/nosotros': Schedule
     // '/blog/:blogName': Blog
   }} />
 

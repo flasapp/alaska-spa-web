@@ -52,7 +52,7 @@
 											<div>
 												<div class="flex justify-between text-md font-regular">
 													<h3>
-														<a href="/products/{ product.url }" on:click={ setProduct(product) }>{ product.title }</a>
+														<a href="/productos/{ product.url }" on:click={ setProduct(product) }>{ product.title }</a>
 													</h3>
 													<p class="ml-4 text-sm font-regular">$ { product.price } c/u.</p>
 												</div>

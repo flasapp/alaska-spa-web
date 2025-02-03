@@ -25,7 +25,7 @@
 		<b>Hola, {$GeneralStore.userLogged.name} {$GeneralStore.userLogged.lastName}</b>
 	</li>
 	<li>
-		<a class="justify-between" href="/profile">
+		<a class="justify-between" href="/perfil">
 		Perfil
 		<span class="badge">New</span>
 		</a>

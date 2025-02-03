@@ -76,6 +76,7 @@
 				lastName: respLogin.apellido,
 				email: respLogin.mail,
 				phone: respLogin.tel,
+				token: respLogin.token,
 				address: {
 					street: respLogin.calle,
 					number: respLogin.numero,

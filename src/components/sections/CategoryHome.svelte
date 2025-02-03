@@ -4,14 +4,14 @@
 </script>
 <section class="categories-section">
 	<div class="categories-container mt-8 py-4">
-		<a class="category-card" href="/categories/vegetarianos?catSku=9">
+		<a class="category-card" href="/categorias/vegetarianos?catSku=9">
 			<img src="{gf}" alt="Productos gluten free" class="category-image">
 			<div class="category-info">
 				<h3 class="category-title">Gluten Free</h3>
 				<p class="category-description">Descubre nuestra selección de productos sin gluten, perfectos para celíacos y amantes de una dieta libre de gluten.</p>
 			</div>
 		</a>
-		<a class="category-card"  href="/categories/vegetarianos?catSku=9">
+		<a class="category-card"  href="/categorias/vegetarianos?catSku=9">
 			<img src="{veggie}" alt="Productos vetetarianos / Veggie" class="category-image">
 			<div class="category-info">
 				<h3 class="category-title">Veggie</h3>

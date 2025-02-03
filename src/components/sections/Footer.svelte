@@ -17,8 +17,8 @@
   </nav> 
   <nav>
     <h6 class="footer-title">Alaska</h6> 
-    <a  class="link link-hover" href="/about">Nosotros</a>
-    <a  class="link link-hover" href="/contact">Contáctanos</a>
+    <a  class="link link-hover" href="/nosotros">Nosotros</a>
+    <a  class="link link-hover" href="/contacto">Contáctanos</a>
   </nav> 
   <!-- <nav>
     <h6 class="footer-title">Legal</h6> 

@@ -137,7 +137,7 @@
       >
         {#each products as product, index}
           <a
-            href="/products/{product.url}"
+            href="/productos/{product.url}"
             on:click={setProduct(product)}
             alt={product.title}
           >

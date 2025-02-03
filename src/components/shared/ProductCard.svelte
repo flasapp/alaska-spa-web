@@ -53,7 +53,7 @@
       class="item-product-img aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none lg:h-80 relative"
     >
       <a
-        href="/products/{product.url}"
+        href="/productos/{product.url}"
         on:click={setProduct(product)}
         alt={product.title}
       >
@@ -103,7 +103,7 @@
     <div
       class="item-product-img aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none lg:h-80 relative"
     >
-      <a href="/products/{product.url}" on:click={setProduct(product)}>
+      <a href="/productos/{product.url}" on:click={setProduct(product)}>
         <picture>
           <img
             style="opacity: {loadingImage ? 0 : 1} max-height: 300px;"

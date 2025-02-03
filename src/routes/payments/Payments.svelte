@@ -5,7 +5,7 @@
   let title = "Medios de pago";
   let breadcrumbs = [{
     name: "Medios de pago",
-    url: "/payments"
+    url: "/metodos-de-pago"
   }];
 </script>
 

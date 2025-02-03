@@ -47,7 +47,9 @@
 	$: invalidneighbourhood = delivery.neighbourhood == '' && submitted
 
 	function searchSelectedNeighbourhood(){
-		selectedNeighbourhood = $GeneralStore.neighbourhoods.find( neigh => neigh.id == $GeneralStore.userLogged.address.neighbourhood)
+		if($GeneralStore.neighbourhoods?.length){
+			selectedNeighbourhood = $GeneralStore.neighbourhoods.find( neigh => neigh.id == $GeneralStore.userLogged.address.neighbourhood)
+		}
 	}
 
 	function handleChange(field, value){

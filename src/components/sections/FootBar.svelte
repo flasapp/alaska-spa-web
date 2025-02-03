@@ -39,7 +39,7 @@
   <!-- <button>
     <DarkLightModeMenu />
   </button> -->
-  <a href="/profile">
+  <a href="/perfil">
     <UserIcon />
     <span class="sm:hidden font-medium" style="font-size: 0.875rem;">Usuario</span>
   </a>

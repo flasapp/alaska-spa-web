@@ -4,7 +4,7 @@
   let title = "Horario de atención"
   let breadcrumbs = [{
     name: "Horario de atención",
-    url: "/schedule"
+    url: "/horarios"
   }]
 </script>
 

@@ -10,7 +10,7 @@
   let title = "Contacto"
   let breadcrumbs = [{
     name: "Contacto",
-    url: "/contact"
+    url: "/contacto"
   }]
   let contact = {
     name: '',

@@ -49,6 +49,7 @@
 			lastName: response.apellido,
 			email: response.mail,
 			phone: response.tel,
+			token: response.token,
 			address: {
 				street: response.calle,
 				number: response.numero,
