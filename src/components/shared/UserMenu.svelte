@@ -1,7 +1,7 @@
 <script>
+	import { router } from 'tinro';
 	import GeneralStore, { logOut } from "@/stores/General";
 	import { ShoppingCart } from "@/stores/Cart";
-	// import { goto } from '$app/navigation';
 	import UserIcon from "@/components/shared/icons/UserNoFill.svelte"
 
 	// import { push } from 'svelte-spa-router';
@@ -10,6 +10,7 @@
 		$GeneralStore.userLogged = {}
 		logOut()
 		$ShoppingCart.step = 0;
+		router.goto(`/`)
 		// push('/')
 	}
 </script>

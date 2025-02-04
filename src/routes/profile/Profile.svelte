@@ -3,7 +3,7 @@
 	import { onMount } from "svelte"
 	//Utils and stores
 	import { router } from 'tinro';
-	import { put, get } from "@/lib/methods/api"
+	import { post, get } from "@/lib/methods/api"
 	import GeneralSettings, { updateUser } from "@/stores/General"
 	import { addToast } from "@/stores/Toasts"
 
@@ -55,8 +55,9 @@
 		//Save user data
 		updateUser($GeneralSettings.userLogged)
 		saving = true
-		let response = await put(`/api/session/update-info/${$GeneralSettings.userLogged.id}`, $GeneralSettings.userLogged)
+		let response = await post(`update-profile`, $GeneralSettings.userLogged)
 		saving = false
+		console.log("🚀  --> response:", response)
 		if(response.success) return addToast({ text: "Datos actualizados correctamente", type: "Success" })
 		addToast({ text: "Ha ocurrido un error, intentelo nuevamente mas tarde", type: "Error" })
 	
@@ -79,7 +80,6 @@
 			orders.forEach( (order) => {
 				order.deliveryDateToDisplay = formatDate(order.deliveryDate)
 			})
-			console.log("🚀  --> orders:", orders)
 		}, 200);
 	}
 	
@@ -96,9 +96,7 @@
 	}
 	
 	const goTo = (orderId) => {
-		
 		router.goto(`/pedidos/${orderId}/${$GeneralSettings.userLogged.id}`)
-
 	}
 
 	onMount(async () => {
