@@ -40,8 +40,8 @@
     <div class="text-sm breadcrumbs py-4">
       	<ul>
         	<li><a href="/">Inicio</a></li>
-        	<li><a href="/profile">Perfil</a></li>
-          <li><a href="/profile">Mis pedidos</a></li>
+        	<li><a href="/perfil">Perfil</a></li>
+          <li><a href="/perfil">Mis pedidos</a></li>
           {#if order.orderId}
             <li># {order?.orderId}</li>
           {/if}

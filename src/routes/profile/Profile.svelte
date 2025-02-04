@@ -60,20 +60,41 @@
 		if(response.success) return addToast({ text: "Datos actualizados correctamente", type: "Success" })
 		addToast({ text: "Ha ocurrido un error, intentelo nuevamente mas tarde", type: "Error" })
 	
-}
+	}
 
-const getMyOrders = async () => {
-	setTimeout(async () => { // --> This is a workaround if the user reload the page. The userLogged is not available yet
-		if(!$GeneralSettings.userLogged.id) return
-		let resp = await get(`orders-user/${$GeneralSettings.userLogged.id}`)
-		orders = resp.data
-		orders.forEach( (order) => {
-			order.deliveryDateToDisplay = new Date(order.deliveryDate).toLocaleDateString()
-			// order.deliveryDateToDisplay =
-		})
-		console.log("🚀  --> orders:", orders)
-	}, 200);
-}
+	const formatDate = (date) =>{
+		const newDate = date
+		const splittedDate = newDate.split('-')
+		// Formateamos la fecha como DD/MM/YYYY
+		const formattedDate = `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
+		return formattedDate
+
+	}
+
+	// const formatDate = (date) =>{
+	// 	const newDate = new Date(date);
+
+	// 	// Extraemos el día, mes y año
+	// 	const day = String(newDate.getDate()).padStart(2, "0"); // Aseguramos 2 dígitos
+	// 	const month = String(newDate.getMonth() + 1).padStart(2, "0"); // Los monthes empiezan en 0
+	// 	const year = newDate.getFullYear();
+
+	// 	// Formateamos la fecha como DD/MM/YYYY
+	// 	const formattedDate = `${day}/${month}/${year}`;
+	// 	return formattedDate
+
+	// }
+
+	const getMyOrders = async () => {
+		setTimeout(async () => { // --> This is a workaround if the user reload the page. The userLogged is not available yet
+			if(!$GeneralSettings.userLogged.id) return
+			let resp = await get(`orders-user/${$GeneralSettings.userLogged.id}`)
+			orders = resp.data.filter(order => order.total != '0') // --> This avoid to show orders with total 0 (old data)
+			orders.forEach( (order) => {
+				order.deliveryDateToDisplay = formatDate(order.deliveryDate)
+			})
+		}, 200);
+	}
 	
 	
 	const getNeighbourhoods = async () => {
