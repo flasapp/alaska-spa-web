@@ -1,11 +1,11 @@
 <script>
 	//Core
+	import { onMount } from "svelte"
 	//Utils and stores
+	import { router } from 'tinro';
 	import { put, get } from "@/lib/methods/api"
 	import GeneralSettings, { updateUser } from "@/stores/General"
 	import { addToast } from "@/stores/Toasts"
-	//Svelte
-	import { onMount } from "svelte"
 
 	//Components
 	import Input from "@/components/form/Input.svelte"
@@ -64,10 +64,13 @@
 
 const getMyOrders = async () => {
 	setTimeout(async () => { // --> This is a workaround if the user reload the page. The userLogged is not available yet
-		console.log("🚀  --> $GeneralSettings.userLogged:", $GeneralSettings.userLogged)
 		if(!$GeneralSettings.userLogged.id) return
 		let resp = await get(`orders-user/${$GeneralSettings.userLogged.id}`)
 		orders = resp.data
+		orders.forEach( (order) => {
+			order.deliveryDateToDisplay = new Date(order.deliveryDate).toLocaleDateString()
+			// order.deliveryDateToDisplay =
+		})
 		console.log("🚀  --> orders:", orders)
 	}, 200);
 }
@@ -87,7 +90,7 @@ const getMyOrders = async () => {
 	
 	const goTo = (orderId) => {
 		
-		goto(`/orders?order=${orderId}&user=${$GeneralSettings.userLogged.id}`)
+		router.goto(`/pedidos/${orderId}/${$GeneralSettings.userLogged.id}`)
 
 	}
 
@@ -102,7 +105,7 @@ const getMyOrders = async () => {
 	})
 </script>
 
-<div class="mx-auto py-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 relative text-center">
+<div class="mx-auto mt-4 py-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 relative text-center">
     <div class="text-sm breadcrumbs py-4">
       	<ul>
         	<li><a href="/">Inicio</a></li>
@@ -239,7 +242,7 @@ const getMyOrders = async () => {
 													{#each orders as order}
 														<tr class="text-center hover" on:click={goTo(order.orderId)}>
 															<!-- <td class="">{order.orderId}</td> -->
-															<td class="">{order.deliveryDate}</td>
+															<td class="">{order.deliveryDateToDisplay}</td>
 															<td class="">{order.deliverySchedule}</td>
 															<td class="">$ {order.total}</td>
 															<td class="">

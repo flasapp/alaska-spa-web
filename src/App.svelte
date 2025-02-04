@@ -12,8 +12,9 @@
   import Product from '@/routes/products/Product.svelte';
   import Category from '@/routes/categories/Category.svelte';
   import Profile from '@/routes/profile/Profile.svelte';
+  import Order from '@/routes/orders/Order.svelte';
 
-  router.subscribe( _ => window.scrollTo(0, 0));
+  router.subscribe( _ => window.scrollTo(0, 0)); // --> To scroll up everytime route change
 
 </script>
 
@@ -33,6 +34,7 @@
         <Route path="/productos/:name"><Product/></Route>
         <Route path="/categorias/:name"><Category/></Route>
         <Route path="/perfil"><Profile/></Route>
+        <Route path="/pedidos/:order/:user"><Order/></Route>
         
       </div>
     {/key}

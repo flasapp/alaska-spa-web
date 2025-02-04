@@ -126,7 +126,7 @@
 
 </script>
 
-<div class="mx-auto py-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 relative text-center">
+<div class="mx-auto mt-4 py-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 relative text-center">
     <div class="text-sm breadcrumbs py-4">
       	<ul>
         	<li><a href="/">Inicio</a></li>
