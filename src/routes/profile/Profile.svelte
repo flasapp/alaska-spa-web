@@ -65,25 +65,11 @@
 	const formatDate = (date) =>{
 		const newDate = date
 		const splittedDate = newDate.split('-')
+		let formattedDate = !splittedDate[2] || !splittedDate[1] || !splittedDate[0] ? "--/--/----" : `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
 		// Formateamos la fecha como DD/MM/YYYY
-		const formattedDate = `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
 		return formattedDate
 
 	}
-
-	// const formatDate = (date) =>{
-	// 	const newDate = new Date(date);
-
-	// 	// Extraemos el día, mes y año
-	// 	const day = String(newDate.getDate()).padStart(2, "0"); // Aseguramos 2 dígitos
-	// 	const month = String(newDate.getMonth() + 1).padStart(2, "0"); // Los monthes empiezan en 0
-	// 	const year = newDate.getFullYear();
-
-	// 	// Formateamos la fecha como DD/MM/YYYY
-	// 	const formattedDate = `${day}/${month}/${year}`;
-	// 	return formattedDate
-
-	// }
 
 	const getMyOrders = async () => {
 		setTimeout(async () => { // --> This is a workaround if the user reload the page. The userLogged is not available yet
@@ -93,9 +79,9 @@
 			orders.forEach( (order) => {
 				order.deliveryDateToDisplay = formatDate(order.deliveryDate)
 			})
+			console.log("🚀  --> orders:", orders)
 		}, 200);
 	}
-	
 	
 	const getNeighbourhoods = async () => {
 		let resp = await get('settings/neighbourhoods');
