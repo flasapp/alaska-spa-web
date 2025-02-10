@@ -9,7 +9,6 @@
 	export let icon
 	export let label
 	export let minDate
-	export let canType = false
 
 	let type = 'date'
 

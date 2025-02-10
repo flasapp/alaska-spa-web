@@ -110,7 +110,9 @@
 			},
 			products: $ShoppingCart.products
 		}
-
+		console.log("🚀  --> $ShoppingCart.products:", $ShoppingCart.products)
+		console.log("🚀  --> orderBody:", orderBody)
+		
 		//Info to send
 		let newOrder = {
 			modoPago: orderBody.paymentMethod,
@@ -140,7 +142,7 @@
 						_id: product.id,
 						_name: product.title,
 						_price: product.price,
-						_quantity: 2,
+						_quantity: product.quantity,
 						_data: {
 							...product
 						},
@@ -148,7 +150,6 @@
 				})
 			},
 		}
-		
 		let order = await post('order-new', newOrder)
 		if(order.response && order.response == "Ok"){
 			addToast({ text: "Pedido agregado exitosamente", type: "Success" });
