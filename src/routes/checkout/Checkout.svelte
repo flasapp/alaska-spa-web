@@ -78,6 +78,8 @@
 		if(!$ShoppingCart.deliveryInfo.schedule || !$ShoppingCart.deliveryInfo.schedule.day || !$ShoppingCart.deliveryInfo.schedule.hour) return addToast({ text: "Debe seleccionar una fecha y hora de entrega", type: "Error" })
 		// Validate there is an address
 		if(!$ShoppingCart.deliveryInfo.address) return addToast({ text: "Debe seleccionar una dirección de entrega", type: "Error" })
+		//Validate if there is a payment method
+		if(!$ShoppingCart.deliveryInfo.schedule.paymentMethod) return addToast({ text: "Debe seleccionar un método de pago", type: "Error" })
 		// Validate there is a user logged
 		if(!$GeneralStore.userLogged.id) return addToast({ text: "Debe iniciar sesión para realizar un pedido", type: "Error" })
 		// Validate the amount of the card is greater or equal than the neighborhood minimum

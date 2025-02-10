@@ -16,6 +16,7 @@
 	import AddressBookIcon from "@/components/shared/icons/AddressBook.svelte"
 	import BuildingIcon from "@/components/shared/icons/Building.svelte"
 	import CornerIcon from "@/components/shared/icons/Corner.svelte"
+	import MandatoryFieldsWarning from "@/components/shared/MandatoryFieldsWarning.svelte"
 
 	export let showSaveDataButton = true
 	let delivery = {
@@ -141,17 +142,17 @@
 					bind:value={delivery.phone} 
 					icon="{PhoneIcon}" 
 					invalidInput={invalidPhone} 
-					label="Teléfono" 
+					label="Teléfono *" 
 					on:changed={handleChange('phone', delivery.phone)} />
 				<Input 
 					placeholder="Calle" 
 					bind:value={delivery.street} 
 					icon="{AddressBookIcon}" 
 					invalidInput={invalidStreet} 
-					label="Calle" 
+					label="Calle *" 
 					on:changed={handleChange('street', delivery.street)}/>
 				<Input 
-					placeholder="Número" 
+					placeholder="Número *" 
 					bind:value={delivery.number} 
 					icon="{LocationIcon}" 
 					invalidInput={invalidNumber} 
@@ -174,7 +175,7 @@
 				
 				<label>
 					<div class="label">
-						<span class="label-text">Barrio {delivery.neighbourhood}</span>
+						<span class="label-text">Barrio *</span>
 					</div>
 					<select class="select select-bordered w-full" bind:value={delivery.neighbourhood} on:change={handleChange('neighbourhood', delivery.neighbourhood)}>
 						<option disabled selected>Seleccione su barrio</option>
@@ -186,8 +187,7 @@
 						<span class="label-text-alt"><small class="text-xs font-extralight">Míinimo de compra para este barrio es : $ {selectedNeighbourhood?.amount}</small></span>
 					</div>
 				</label>
-				
-				<br>
+				<MandatoryFieldsWarning />
 				{#if showSaveDataButton}
 					<button class="flex rounded-md font-medium btn btn-primary w-full" on:click={saveUserData}>
 						Guardar mis datos

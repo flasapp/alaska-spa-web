@@ -1,7 +1,8 @@
 <script>
-	import InputDate from "../../components/form/InputDate.svelte"
+	import InputDate from "@/components/form/InputDate.svelte"
 	import { addToast } from "@/stores/Toasts"
-	import { ShoppingCart } from "../../stores/Cart"
+	import { ShoppingCart } from "@/stores/Cart"
+	import MandatoryFieldsWarning from "@/components/shared/MandatoryFieldsWarning.svelte"
 
 	const SCHDEULE_1 = '11:00 a 14:00 hrs'
 	const SCHDEULE_2 = '14:00 a 17:00 hrs'
@@ -26,12 +27,29 @@
 		}
 	]
 
+	const PAYMENT_METHODS = [
+		{
+			name: 'Efectivo',
+			value: 'Efectivo'
+		},
+		{
+			name: 'Credito o debito',
+			value: 'Credito o debito'
+		},
+		{
+			name: 'Tickets alimentacion',
+			value: 'Tickets alimentacion'
+		}
+	]
+	
+	let paymentMethods = PAYMENT_METHODS
 	let schedules = SCHEDULES
 
 	let delivery = {
 		day: '',
 		hour: '',
-		observations: ''
+		observations: '',
+		paymentMethod: ''
 	}
 	let invalidDay = false
 	let now = new Date()
@@ -44,7 +62,7 @@
 	//Refresh delivery info
 	$: $ShoppingCart.deliveryInfo.schedule = delivery
 
-	function handleChange(field, value){
+	function handleChangeDate(field, value){
 		console.log("Handle", field, value, minDate)
 		
 		if(field == 'day'){
@@ -100,10 +118,10 @@
 				placeholder="Día de entrega" 
 				bind:value={delivery.day} 
 				invalidInput={invalidDay} 
-				label="Día de entrega" 
+				label="Día de entrega *" 
 				{minDate}
-				on:changed={handleChange('day', delivery.day)} />
-			<label>Hora de entrega</label>
+				on:changed={handleChangeDate('day', delivery.day)} />
+			<label>Hora de entrega *</label>
 			<select 
 				class="select select-bordered w-full" 
 				bind:value="{delivery.hour}" 
@@ -113,8 +131,19 @@
 					<option {value} {disabled}>{name}</option>
 				{/each}
 			</select>
+			<label>Método de pago *</label>
+			<select 
+				class="select select-bordered w-full" 
+				bind:value="{delivery.paymentMethod}"
+			>
+				{#each paymentMethods as { value, name } }
+					<option {value}>{name}</option>
+				{/each}
+			</select>
 			<label>Observaciones</label>
 			<textarea class="textarea textarea-bordered textarea-sm w-full" bind:value={delivery.observations}></textarea>
+			<br />
+			<MandatoryFieldsWarning />
 		</div>
 	</form>
 </div>
