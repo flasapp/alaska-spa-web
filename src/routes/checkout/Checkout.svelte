@@ -87,8 +87,9 @@
 		if($ShoppingCart.total < neighbourhood.amount) return addToast({ text: `El monto mínimo de compra en <b>${neighbourhood.title}</b> es de <b>$ ${neighbourhood.amount}</b>`, type: "Error" })
 		
 		saving = true
-
+		//Info to order
 		orderBody = {
+			paymentMethod: $ShoppingCart.deliveryInfo.schedule.paymentMethod,
 			observations: $ShoppingCart.deliveryInfo.schedule.observations,
 			total: $ShoppingCart.total,
 			user: {
@@ -109,8 +110,46 @@
 			},
 			products: $ShoppingCart.products
 		}
+
+		//Info to send
+		let newOrder = {
+			modoPago: orderBody.paymentMethod,
+			observaciones: orderBody.observations,
+			total: orderBody.total,
+			usuario: {
+				mail: orderBody.user.email,
+				nomUsuario: orderBody.user.name,
+				apellido: orderBody.user.lastname,
+				tel: orderBody.user.phone,
+				calle: orderBody.user.street,
+				numero: orderBody.user.number,
+				esquina: orderBody.user.corner,
+				apto: orderBody.user.depto,
+				idBarrio: orderBody.user.neighbourhood,
+				idUsuario: orderBody.user.id
+			},
+			fechaEntrega: {
+				horario: orderBody.schedule.hour,
+				anioElegido: orderBody.schedule.day.split('-')[0],
+				mesElegido: orderBody.schedule.day.split('-')[1],
+				diaElegido: orderBody.schedule.day.split('-')[2]
+			},
+			carrito: {
+				items: orderBody.products.map(product => {
+					return {
+						_id: product.id,
+						_name: product.title,
+						_price: product.price,
+						_quantity: 2,
+						_data: {
+							...product
+						},
+					}
+				})
+			},
+		}
 		
-		let order = await post('/api/orders/new', orderBody)
+		let order = await post('order-new', newOrder)
 		if(order.response && order.response == "Ok"){
 			addToast({ text: "Pedido agregado exitosamente", type: "Success" });
 			orderFinished = true
