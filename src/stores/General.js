@@ -16,6 +16,7 @@ const GeneralStore = writable({
 	},
 	selectedProduct: {},
 	selectedCategory: {},
+	blockOrders: false,
 })
 
 export const getCategories = async () => {

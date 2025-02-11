@@ -1,8 +1,15 @@
 <script>
-
+  //Core
   import { fade, fly } from "svelte/transition";
+  import { onMount } from 'svelte';
+  //Utils and stores
   import { Route, router } from 'tinro'; 
+  import { get } from '@/lib/methods/api'
+  import GeneralStore from '@/stores/General';
+  //Components
   import Layout from '@/Layout.svelte';
+  import LoadingOverlay from '@/components/shared/LoadingOverlay.svelte';
+  //Routes
   import Home from '@/routes/home/Home.svelte';
   import Schedule from '@/routes/schedule/Schedule.svelte';
   import Delivery from '@/routes/delivery/Delivery.svelte';
@@ -14,51 +21,42 @@
   import Profile from '@/routes/profile/Profile.svelte';
   import Order from '@/routes/orders/Order.svelte';
 
+  let isLoading = true;
+
   router.subscribe( _ => window.scrollTo(0, 0)); // --> To scroll up everytime route change
 
+  onMount(async () => {
+    // Get settings
+    let resp = await get('settings/configs');
+    // resp.fgPedidos = 0; //Toggle to test this
+    $GeneralStore.blockOrders = resp.fgPedidos != 1 && resp.fgPedidos != '1';
+    isLoading = false; // Ocultar el overlay cuando termine la carga
+  });
+
+
 </script>
-
-  <Layout>
-    {#key $router.path}
-      <div
-        in:fly={{ y: -200, duration: 500, delay: 500 }}
-        out:fly={{ x: -200, duration: 500 }}
-      >
-        <Route path="/"><Home /></Route>
-        <Route path="/nosotros"><Schedule/></Route>
-        <Route path="/horarios"><Schedule/></Route>
-        <Route path="/delivery"><Delivery/></Route>
-        <Route path="/contacto"><Contact/></Route>
-        <Route path="/metodos-de-pago"><Payments/></Route>
-        <Route path="/checkout"><Checkout/></Route>
-        <Route path="/productos/:name"><Product/></Route>
-        <Route path="/categorias/:name"><Category/></Route>
-        <Route path="/perfil"><Profile/></Route>
-        <Route path="/pedidos/:order/:user"><Order/></Route>
-        
-      </div>
-    {/key}
-  </Layout>
-
-<!-- <main>
-  NAV:
-  <nav>
-    <a  href="/">Home</a>
-    <a  href="/nosotros">About</a>
-  </nav>
-
-  <button class="btn">Daisy button</button>
-
-  <Router routes={{
-    '/': Home,
-    '/nosotros': Schedule
-    // '/blog/:blogName': Blog
-  }} />
-
-  <hr>
-  LOCATION : {$location}
-
-</main> -->
+<LoadingOverlay {isLoading} />
+<Layout>
+  {#key $router.path}
+    <div
+      in:fly={{ y: -200, duration: 500, delay: 500 }}
+      out:fly={{ x: -200, duration: 500 }}
+    >
+      <Route path="/"><Home /></Route>
+      <Route path="/nosotros"><Schedule/></Route>
+      <Route path="/horarios"><Schedule/></Route>
+      <Route path="/delivery"><Delivery/></Route>
+      <Route path="/contacto"><Contact/></Route>
+      <Route path="/metodos-de-pago"><Payments/></Route>
+      <Route path="/checkout"><Checkout/></Route>
+      <Route path="/productos/:name"><Product/></Route>
+      <Route path="/categorias/:name"><Category/></Route>
+      <Route path="/perfil"><Profile/></Route>
+      <Route path="/pedidos/:order/:user"><Order/></Route>
+      
+    </div>
+  {/key}
+</Layout>
 
 <style>
 </style>

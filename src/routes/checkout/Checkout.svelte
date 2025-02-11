@@ -4,7 +4,6 @@
 	import { get, post } from '@/lib/methods/api' 
 	import { ShoppingCart, restoreStepCart, goNextStep, goPrevStep, resetCart } from "@/stores/Cart"
 	import GeneralStore from "@/stores/General"
-	console.log("🚀  --> GeneralStore:", $GeneralStore.userLogged)
 	import { addToast } from "@/stores/Toasts"
 	//Svelte
 	import { onMount } from "svelte"
@@ -85,6 +84,8 @@
 		// Validate the amount of the card is greater or equal than the neighborhood minimum
 		let neighbourhood = $GeneralStore.neighbourhoods.find( neigh => neigh.id == $GeneralStore.userLogged.address.neighbourhood)
 		if($ShoppingCart.total < neighbourhood.amount) return addToast({ text: `El monto mínimo de compra en <b>${neighbourhood.title}</b> es de <b>$ ${neighbourhood.amount}</b>`, type: "Error" })
+
+		if($GeneralStore.blockOrders) return addToast({ text: "No se pueden realizar pedidos", type: "Error" })
 		
 		saving = true
 		//Info to order
@@ -110,8 +111,6 @@
 			},
 			products: $ShoppingCart.products
 		}
-		console.log("🚀  --> $ShoppingCart.products:", $ShoppingCart.products)
-		console.log("🚀  --> orderBody:", orderBody)
 		
 		//Info to send
 		let newOrder = {
@@ -232,9 +231,9 @@
 					{:else}
 						<button 
 							on:click={goForward} 
-							disabled="{$ShoppingCart.step == steps.length - 1 || ($ShoppingCart.step == 1 && !$GeneralStore.userLogged.id)}" 
+							disabled="{$ShoppingCart.step == steps.length - 1 || ($ShoppingCart.step == 1 && !$GeneralStore.userLogged.id) || $GeneralStore.blockOrders}" 
 							class="rounded-md font-medium btn btn-primary w-1/2">
-							Continuar <ForwardIcon />
+							{$GeneralStore.blockOrders ? 'No se pueden realizar pedidos' : 'Continuar'} <ForwardIcon />
 						</button>
 					{/if}	
 				</div>
