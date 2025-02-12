@@ -26,7 +26,6 @@
   onMount(async () => {
       const userLogged = localStorage?.getItem('userLogged') ? JSON.parse(localStorage.getItem('userLogged')) : {}
       $GeneralStore.userLogged = userLogged
-      console.log("🚀  --> $GeneralStore.userLogged:", $GeneralStore.userLogged)
       if($GeneralStore.userLogged.neighbourhood) $GeneralStore.userLogged.neighbourhood = +$GeneralStore.userLogged.neighbourhood
 	});
 </script>

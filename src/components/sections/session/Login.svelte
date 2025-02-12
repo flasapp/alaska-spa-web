@@ -86,6 +86,13 @@
 						Ingresar
 					{/if}
 				</button>
+				<div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+				
+					<a type="button" class="font-regular text-sm text-primary" href="/recuperar-usuario/obtener-codigo">
+						Olvidaste la contraseña?
+					</a>
+					
+				</div>
 			</div>
 		</form>
 	</div>

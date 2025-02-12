@@ -2,7 +2,6 @@
 const { VITE_ALASKA_API } = import.meta.env
 function createRequestOptions(method) {
 	const userLogged = JSON.parse(localStorage.getItem("userLogged"))
-	console.log("🚀  --> userLogged:", userLogged)
 	let options = {
 		method,
 		headers: { "Content-Type": "application/json" }
@@ -14,7 +13,6 @@ function createRequestOptions(method) {
 
 export async function get(url) {
 	let options = createRequestOptions("GET")	
-	console.log("🚀  --> options:", options)
 	const responsePromise = await fetch(VITE_ALASKA_API + url, options)
 	const response = await responsePromise.json()
 	return response

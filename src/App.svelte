@@ -20,6 +20,7 @@
   import Category from '@/routes/categories/Category.svelte';
   import Profile from '@/routes/profile/Profile.svelte';
   import Order from '@/routes/orders/Order.svelte';
+  import RecoverPassword from '@/routes/recoverPassword/RecoverPassword.svelte';
 
   let isLoading = true;
 
@@ -30,7 +31,7 @@
     let resp = await get('settings/configs');
     // resp.fgPedidos = 0; //Toggle to test this
     $GeneralStore.blockOrders = resp.fgPedidos != 1 && resp.fgPedidos != '1';
-    isLoading = false; // Ocultar el overlay cuando termine la carga
+    isLoading = false; // Hide overlay after getting the settings
   });
 
 
@@ -53,7 +54,7 @@
       <Route path="/categorias/:name"><Category/></Route>
       <Route path="/perfil"><Profile/></Route>
       <Route path="/pedidos/:order/:user"><Order/></Route>
-      
+      <Route path="/recuperar-usuario/:email"><RecoverPassword/></Route>
     </div>
   {/key}
 </Layout>
