@@ -6,8 +6,9 @@
 	import PassIcon from "@/components/shared/icons/Password.svelte";
 	import UserIcon from "@/components/shared/icons/User.svelte";
 	import Input from "@/components/form/Input.svelte";
+	import NumberInput from "@/components/form/NumberInput.svelte";
   	import InfoSection from "@/components/shared/InfoSection.svelte";
-  	import img from "@/assets/images/recover.svg";
+  	import RecoverImage from "@/assets/images/recover.svg";
 
 	const route = meta();	
 	let submitted = false;
@@ -23,6 +24,34 @@
 		url: "/recuperar-clave"
 	}];
 	let step = 1;
+	// Número de inputs que deseas (puedes cambiar este valor)
+    let cantidadInputs = 4;
+
+    // Array para almacenar los valores de los inputs
+    let valores = Array(cantidadInputs).fill('');
+
+    // Variable para concatenar los valores
+    $: valorConcatenado = valores.join('');
+
+    // Referencias a los inputs para enfocarlos
+    let inputRefs = [];
+
+    // Función para enfocar el siguiente input
+    function focusNext(index) {
+        console.log("🚀  --> index:", index)
+		let numberInputs = document.querySelectorAll('.input-code');
+        console.log("🚀  --> numberInputs:", numberInputs)
+		if(numberInputs && numberInputs[index + 1]) numberInputs[index + 1].focus();
+        // if (index < inputRefs.length - 1) {
+        //     inputRefs[index + 1].focus();
+        //     console.log("🚀  --> inputRefs:", inputRefs)
+        // }
+    }
+
+    // Función para actualizar un valor en el array
+    function actualizarValor(index, nuevoValor) {
+        valores = valores.map((valor, i) => (i === index ? nuevoValor : valor));
+    }
 
 
 	function isValidEmail(email) {
@@ -47,12 +76,12 @@
 </script>
 
 <InfoSection {title} {breadcrumbs}>
-	<img src="{img}" alt="Recuperar contraseña">
+	<img src="{RecoverImage}" alt="Recuperar contraseña">
 	<hr><br>
+	{#if step == 1}
 	<p class="font-medium">
 		Ingresa tu email y te enviaremos un link y un código para recuperar tu contraseña.
 	</p>
-	{#if step == 1}
 	<form action="getCode" class="w-full mt-4">
 		<div class="form-control">
 			<Input placeholder="Email" bind:value={user.mail} type="email" icon="{MailIcon}" />
@@ -69,9 +98,22 @@
 	</form>
 	{/if}
 	{#if step == 2}
+	<p class="font-medium">
+		Ingresa el código enviado en el email y tu nueva contraseña.
+	</p>
 	<form action="getCode" class="w-full mt-4">
 		<div class="form-control ">
-			<Input placeholder="Ingrese el código" bind:value={user.code} type="text" icon="{UserIcon}" />
+			<div class="flex gap-4 justify-center">
+				{#each valores as valor, index}
+					<NumberInput
+						bind:value={valores[index]}
+						placeholder="1"
+						on:nextFocus={() => focusNext(index)}
+						bind:this={inputRefs[index]}
+					/>
+				{/each}
+			</div>
+			
 			<br>
 			<Input placeholder="Ingrese su nueva contraseña" bind:value={user.pass} type="password" icon="{PassIcon}" />
 			<br>
@@ -91,4 +133,5 @@
 </InfoSection>
 
 <style>
+	
 </style>
