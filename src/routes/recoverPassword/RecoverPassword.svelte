@@ -24,35 +24,21 @@
 		url: "/recuperar-clave"
 	}];
 	let step = 1;
+	
 	// Número de inputs que deseas (puedes cambiar este valor)
-    let cantidadInputs = 4;
-
-    // Array para almacenar los valores de los inputs
-    let valores = Array(cantidadInputs).fill('');
-
-    // Variable para concatenar los valores
-    $: valorConcatenado = valores.join('');
-
-    // Referencias a los inputs para enfocarlos
+    let inputsQuantity = 4;
+    // Array to store the value of each Numberinput
+    let valuesArray = Array(inputsQuantity).fill('');
+    // Update the user.code value with the valuesArray
+    $: user.code = valuesArray.join('');
+    // Number input references
     let inputRefs = [];
 
     // Función para enfocar el siguiente input
     function focusNext(index) {
-        console.log("🚀  --> index:", index)
 		let numberInputs = document.querySelectorAll('.input-code');
-        console.log("🚀  --> numberInputs:", numberInputs)
 		if(numberInputs && numberInputs[index + 1]) numberInputs[index + 1].focus();
-        // if (index < inputRefs.length - 1) {
-        //     inputRefs[index + 1].focus();
-        //     console.log("🚀  --> inputRefs:", inputRefs)
-        // }
     }
-
-    // Función para actualizar un valor en el array
-    function actualizarValor(index, nuevoValor) {
-        valores = valores.map((valor, i) => (i === index ? nuevoValor : valor));
-    }
-
 
 	function isValidEmail(email) {
 		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -104,16 +90,15 @@
 	<form action="getCode" class="w-full mt-4">
 		<div class="form-control ">
 			<div class="flex gap-4 justify-center">
-				{#each valores as valor, index}
+				{#each valuesArray as valor, index}
 					<NumberInput
-						bind:value={valores[index]}
+						bind:value={valuesArray[index]}
 						placeholder="1"
 						on:nextFocus={() => focusNext(index)}
 						bind:this={inputRefs[index]}
 					/>
 				{/each}
 			</div>
-			
 			<br>
 			<Input placeholder="Ingrese su nueva contraseña" bind:value={user.pass} type="password" icon="{PassIcon}" />
 			<br>
