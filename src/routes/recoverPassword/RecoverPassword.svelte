@@ -1,7 +1,13 @@
 <script>
+	//Core
 	import { onMount } from 'svelte';
+
+	//Utils
 	import { meta } from 'tinro';
 	import { post } from "@/lib/methods/api";
+	import { addToast } from "@/stores/Toasts"
+
+	//Components
 	import MailIcon from "@/components/shared/icons/Mail.svelte";
 	import PassIcon from "@/components/shared/icons/Password.svelte";
 	import UserIcon from "@/components/shared/icons/User.svelte";
@@ -18,15 +24,17 @@
 		pass: '',
 		confirmPass: ''
 	}
-	let title = "Recuperar Contraseña - obtener código";
+	let title = "";
+	
 	let breadcrumbs = [{
 		name: "Recuperar contraseña",
 		url: "/recuperar-clave"
 	}];
 	let step = 1;
+	$: title = step == 1 ? 'Obtener código' : 'Cambio de contraseña';
 	
 	// Número de inputs que deseas (puedes cambiar este valor)
-    let inputsQuantity = 4;
+    let inputsQuantity = 6;
     // Array to store the value of each Numberinput
     let valuesArray = Array(inputsQuantity).fill('');
     // Update the user.code value with the valuesArray
@@ -34,29 +42,46 @@
     // Number input references
     let inputRefs = [];
 
-    // Función para enfocar el siguiente input
+	//Util functions
     function focusNext(index) {
 		let numberInputs = document.querySelectorAll('.input-code');
 		if(numberInputs && numberInputs[index + 1]) numberInputs[index + 1].focus();
     }
-
 	function isValidEmail(email) {
 		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 		return emailRegex.test(email);
 	}
-
+	//Asycn functions
 	const getCode = async () => {
-		if(!user.mail) return;
-		let resp = await post('recover-password', { mail: user.mail });
+			
+		if(!user.mail || !isValidEmail(user.mail)) return addToast({ text: "Hubo un error al enviar el código", type: "Error" });
+		submitted = true;
+		let resp = await post('request-code-password', { email: user.mail });
+		submitted = false;
+		if(resp.error) return addToast({ text: "Hubo un error al enviar el código", type: "Error" });
+		addToast({ text: "Se ha enviado el código a su casilla de correo", type: "success" });
+		user = {
+			mail: '',
+			code: '',
+			pass: '',
+			confirmPass: ''
+		}
+
+	}
+	const recoverPassword = async () => {
+		if(!user.code || !user.pass || !user.confirmPass) return;
+		if(user.pass !== user.confirmPass) return;
+		let resp = await post('recover-password', { mail: user.mail, code: user.code, pass: user.pass });
 		if(resp.error){
 			console.log("🚀 ~ file: RecoverPassword.svelte ~ line 41 ~ getCode ~ resp.error", resp.error)
 		}
 	}
-
+	//Hooks
 	onMount(() => {
 		if(isValidEmail(route.params.email)){
 			user.mail = route.params.email;
 			step = 2;
+			return
 		}
 	});
 </script>
@@ -68,7 +93,7 @@
 	<p class="font-medium">
 		Ingresa tu email y te enviaremos un link y un código para recuperar tu contraseña.
 	</p>
-	<form action="getCode" class="w-full mt-4">
+	<form class="w-full mt-4">
 		<div class="form-control">
 			<Input placeholder="Email" bind:value={user.mail} type="email" icon="{MailIcon}" />
 			<br>
@@ -87,7 +112,7 @@
 	<p class="font-medium">
 		Ingresa el código enviado en el email y tu nueva contraseña.
 	</p>
-	<form action="getCode" class="w-full mt-4">
+	<form action="" class="w-full mt-4">
 		<div class="form-control ">
 			<div class="flex gap-4 justify-center">
 				{#each valuesArray as valor, index}
@@ -104,7 +129,7 @@
 			<br>
 			<Input placeholder="Confirme su nueva contraseña" bind:value={user.confirmPass} type="password" icon="{PassIcon}"/>
 			<br>
-			<button class="flex rounded-md font-medium btn btn-primary w-full" on:click={getCode} disabled={submitted}>
+			<button class="flex rounded-md font-medium btn btn-primary w-full" on:click={recoverPassword} disabled={submitted}>
 				{#if submitted}
 				<span class="loading loading-spinner"></span>
 				Recuperando contraseña

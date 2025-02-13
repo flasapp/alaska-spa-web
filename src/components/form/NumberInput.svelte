@@ -33,8 +33,8 @@ input[type="number"] {
     -moz-appearance: textfield; /* Para Firefox */
 }
 .input-code{
-	width: 5rem;
-	height: 5rem;
+	width: 2.5rem;
+	height: 2.5rem;
 	text-align: center;
 	font-size: 1.5rem;
 	border: 1px solid #e2e8f0;
