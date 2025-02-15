@@ -208,35 +208,35 @@
 
 <style>
 	.search-input input {
-	width: 45px;
-	transition: width 0.3s;
+		width: 45px;
+		transition: width 0.3s;
 	}
 	.search-input {
-	width: auto;
-	height: 40px;
-	padding: 0.5rem;
-	overflow: hidden;
-	position: relative;
+		width: auto;
+		height: 40px;
+		padding: 0.5rem;
+		overflow: hidden;
+		position: relative;
 	}
 	.search-input:focus-within input {
-	width: 200px;
+		width: 200px;
 	}
 	.search-input input:not(:placeholder-shown) {
-	width: 200px;
+		width: 200px;
 	}
 
 	/* add fade-in effect to grid */
 	.grid {
-	opacity: 0;
-	animation: fadeIn 0.5s forwards;
+		opacity: 0;
+		animation: fadeIn 0.5s forwards;
 	}
 	.alert {
-	opacity: 0;
-	animation: fadeIn 0.5s forwards;
+		opacity: 0;
+		animation: fadeIn 0.5s forwards;
 	}
 	@keyframes fadeIn {
-	to {
-		opacity: 1;
-	}
+		to {
+			opacity: 1;
+		}
 	}
 </style>

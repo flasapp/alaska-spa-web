@@ -21,8 +21,8 @@
 <header class="md:flex pt-16 bg-header bg-header-image lg:px-8" style="padding-left:10%; padding-right:10%;">
 	<div class="w-full md:py-12 lg:py-16 inline-block align-top px-2">
 		<div class="justify-center items-center text-center pb-8">
-    		<div class="mx-auto flex justify-center">
-				<div class="text-center ">
+    		<div class="mx-auto flex justify-center text-header text-animation-header">
+				<div class="text-center">
 					<h1 class="text-4xl font-medium tracking-tight sm:text-5xl md:text-6xl">
 						<span class="block xl:inline"><span class="block">Bienvenido a</span>
 						<span class="bg-gradient-to-r from-indigo-400 to-pink-600 bg-clip-text text-transparent">
@@ -55,12 +55,12 @@
 					</div> -->
 				</div>
     		</div>
-			<p class="mx-auto mt-3 max-w-xl text-lg text-gray-500 dark:text-slate-400 sm:mt-5 md:mt-5">
+			<p class="mx-auto mt-3 max-w-xl text-lg text-gray-500 dark:text-slate-400 sm:mt-5 md:mt-5 sub-text-animation-header">
 						Encuentra los productos que necesitas de forma rápida y sencilla. 
 						<!-- <span class="text-blue-600">Get started for free 🚀</span> -->
 					</p>
 			<!-- <button class="text-base font-medium px-8 mt-8 btn btn-outline btn-primary bounce" style="border-radius: 25px;" on:click={toggleSearchingProdcuts}>ver categorias</button> -->
-			<button class="text-base font-medium px-8 mt-8 btn btn-primary"  on:click={toggleSearchingProdcuts}>
+			<button class="text-base font-medium px-8 mt-8 btn btn-primary button-animation-header"  on:click={toggleSearchingProdcuts}>
 				buscar producto 
 				<svg class="bounce-arrow text-base s-JNLYuTJ9zdN9" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" class="s-JNLYuTJ9zdN9"></path><polyline points="9 6 15 12 9 18" class="s-JNLYuTJ9zdN9"></polyline></svg>
 				<!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 md:inline-block"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg> -->
@@ -159,5 +159,53 @@
 	.bounce-arrow {
 		-webkit-animation: bounce-arrow 2s infinite;
 	}
+
+	.text-animation-header {
+		-webkit-animation: show-text-animation-header 1s;
+  	}
+	.sub-text-animation-header{
+		-webkit-animation: show-sub-text-animation-header 1s;
+	}
+	.button-animation-header{
+		-webkit-animation: show-button-animation-header 1s;
+		/* opacity: 0; */
+	}
+  	@keyframes show-text-animation-header {
+		from {
+			opacity: 0;
+			transform: translateY(-50px);
+			/* background: red; */
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0px);
+			/* background: blue; */
+		}
+  	}
+
+	@keyframes show-sub-text-animation-header {
+		from {
+			opacity: 0;
+			/* transform: translateY(-50px); */
+			/* background: red; */
+		}
+		to {
+			opacity: 1;
+			/* transform: translateY(0px); */
+			/* background: blue; */
+		}
+  	}
+	@keyframes show-button-animation-header {
+		from {
+			opacity: 0;
+			transform: translateX(50px);
+			/* background: red; */
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0px);
+			/* background: blue; */
+		}
+  	}
 	
 </style>
