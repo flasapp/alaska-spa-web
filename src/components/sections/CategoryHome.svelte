@@ -71,7 +71,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		background-color: rgba(167, 139, 250, 0.1);
+		/* background-color: rgba(167, 139, 250, 0.1); */
 		transition: all 0.5s ease;
 		padding: 20px;
 		box-sizing: border-box;
@@ -114,6 +114,117 @@
 			width: 100%;
 		}
 	}
+
+	@keyframes effectHover {
+		/* filter: blur(0); */
+		/* transform: translateY(-30%); */
+		from {
+			filter: blur(2px);
+			transform: translateY(0%);
+			opacity: 0;
+			/* transform: translateY(30%); */
+		}
+		to {
+			opacity: 1;
+			/* transform: translateY(0); */
+			filter: blur(0);
+			transform: translateY(-30%);
+		}
+	}
+
+	@keyframes unblur {
+		from {
+			filter: blur(2px);
+			transform: translateY(30%);
+		}
+		to {
+			filter: blur(0);
+			transform: translateY(0);
+		}
+	}
+	@keyframes titleHoverEffect {
+		from {
+			transform: translateY(0) scale(1);
+			color: #a78bfa;
+		}
+		to {
+			transform: translateY(10px) scale(0.9);
+			color: #5c5c5c;
+		}
+	}
+	@keyframes imageHoverEffect {
+		from {
+			filter: blur(2px);
+			transform: translateY(0%);
+		}
+		to {
+			filter: blur(0);
+			transform: translateY(-30%);
+		}
+	}
+	@keyframes infoHoverEffect {
+		from {
+			/* background-color: rgba(167, 139, 250, 0.0); */
+			transform: translateY(0%);
+			height: 100%;
+		}
+		to {
+			/* background-color: rgba(255, 255, 255, 0); */
+			transform: translateY(100%);
+			height: 150px;
+		}
+	}
+	@keyframes titleHoverEffect {
+		from {
+			transform: translateY(0) scale(1);
+			color: #a78bfa;
+		}
+		to {
+			transform: translateY(10px) scale(0.9);
+			color: #5c5c5c;
+		}
+	}
+	@keyframes descriptionHoverEffect {
+		from {
+			transform: translateY(0) scale(1);
+			color: #5c5c5c;
+		}
+		to {
+			transform: translateY(10px) scale(0.9);
+			color: gray;
+		}
+	}
+
+	/* Aplica la animación cuando el elemento entra en el viewport */
+	/* .category-card {
+		opacity: 0;
+		animation: effectHover 0.8s ease-out forwards;
+		animation-timeline: view();
+		animation-range: entry 20% cover 50%;
+	} */
+
+	.category-image {
+		animation: imageHoverEffect 0.8s ease-out forwards;
+		animation-timeline: view();
+		animation-range: entry 90% cover 100%;
+	}
+	.category-info {
+		animation: infoHoverEffect 0.8s ease-out forwards;
+		animation-timeline: view();
+		animation-range: entry 60% cover 80%;
+	}
+	.category-title {
+		animation: titleHoverEffect 0.8s ease-out forwards;
+		animation-timeline: view();
+		animation-range: entry 60% cover 100%;
+		overflow: hidden;
+	}
+	.category-description{
+		animation: descriptionHoverEffect 0.8s ease-out forwards;
+		animation-timeline: view();
+		animation-range: entry 20% cover 50%;
+	}
+
 	
 	
 </style>
