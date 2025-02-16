@@ -13,20 +13,23 @@
     } 
   })
 
-  
 </script>
 
 <section class="bg-header bg-header-image {isRegister ? 'bg-left' : 'bg-right'}" style="mask-image:linear-gradient(transparent, black 15%, white 85%, transparent) !important">
   <div class="w-full text-center ">
     <section class="signup-section {isRegister ? 'signup-left' : 'signup-right'}">
         {#if isRegister}
-          <h2 class="text-2xl">Regístrate y comienza a comprar en nuestra tienda</h2>
-          <p class="text-md font-regular">Descubre ofertas exclusivas y productos únicos</p>
-          <button on:click="{() =>showLoginModal = true}" class="glow-button bg-violet-400">Regístrate ahora</button>
+          <div class="fade-in-right">
+            <h2 class="text-2xl">Regístrate y comienza a comprar en nuestra tienda</h2>
+            <p class="text-md font-regular">Descubre ofertas exclusivas y productos únicos</p>
+            <button on:click="{() =>showLoginModal = true}" class="glow-button bg-violet-400">Regístrarme</button>
+          </div>
         {:else}
-          <h2 class="text-2xl">Ingresa y comienza a comprar en nuestra tienda</h2>
-          <p class="text-md font-regular">Inicia sesión y haz tu compra fácil y rápido</p>
-          <button on:click="{() =>showLoginModal = true}" class="glow-button bg-violet-400">Iniciar sesión</button>
+          <div class="fade-in-left">
+            <h2 class="text-2xl">Ingresa y comienza a comprar en nuestra tienda</h2>
+            <p class="text-md font-regular">Inicia sesión y haz tu compra fácil y rápido</p>
+            <button on:click="{() =>showLoginModal = true}" class="glow-button bg-violet-400">Iniciar sesión</button>
+          </div>
         {/if}
     </section>
   </div>
@@ -99,6 +102,22 @@
       text-align: right;
       margin-right: 10%;
     }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      animation: fadeInRight linear forwards;
+      animation-timeline: view();
+      animation-range: entry 20% cover 30%;
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: fadeInLeft linear forwards;
+      animation-timeline: view();
+      animation-range: entry 20% cover 30%;
+    }
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -109,4 +128,27 @@
             transform: translateY(0);
         }
     }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes fadeInRight{
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+
 </style>
