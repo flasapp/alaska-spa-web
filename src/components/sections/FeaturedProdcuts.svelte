@@ -56,7 +56,7 @@
 </script>
 
 <div
-  class="mx-auto py-8 w-full bg-base-100 relative"
+  class="mx-auto py-8 w-full bg-base-100 relative featured-products-container"
   style="padding-left:10%; padding-right:10%;"
 >
   <h2 class="text-2xl">{title}</h2>
@@ -119,4 +119,24 @@
   #right-arrow {
     right: 5%;
   }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(120px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+.featured-products-container {
+  opacity: 0;
+  transform: translateY(120px);
+  /* animation: fadeInSlide 0.8s ease-out forwards; */
+
+  animation: fadeIn 0.8s ease-out forwards;
+  animation-timeline: view();
+  animation-range: entry 20% cover 50%;
+}
 </style>

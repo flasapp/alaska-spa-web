@@ -181,7 +181,7 @@
 		}
 		to {
 			transform: translateY(10px) scale(0.9);
-			color: #5c5c5c;
+			color: #a78bfa;
 		}
 	}
 	@keyframes descriptionHoverEffect {
@@ -196,33 +196,27 @@
 	}
 
 	/* Aplica la animación cuando el elemento entra en el viewport */
-	/* .category-card {
-		opacity: 0;
-		animation: effectHover 0.8s ease-out forwards;
-		animation-timeline: view();
-		animation-range: entry 20% cover 50%;
-	} */
 
 	.category-image {
 		animation: imageHoverEffect 0.8s ease-out forwards;
 		animation-timeline: view();
-		animation-range: entry 90% cover 100%;
+		animation-range: entry 100% cover 100%;
 	}
 	.category-info {
 		animation: infoHoverEffect 0.8s ease-out forwards;
 		animation-timeline: view();
-		animation-range: entry 60% cover 80%;
+		animation-range: entry 100% cover 80%;
 	}
 	.category-title {
 		animation: titleHoverEffect 0.8s ease-out forwards;
 		animation-timeline: view();
-		animation-range: entry 60% cover 100%;
+		animation-range: entry 100% cover 100%;
 		overflow: hidden;
 	}
 	.category-description{
 		animation: descriptionHoverEffect 0.8s ease-out forwards;
 		animation-timeline: view();
-		animation-range: entry 20% cover 50%;
+		animation-range: entry 100% cover 50%;
 	}
 
 	
