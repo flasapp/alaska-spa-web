@@ -58,7 +58,7 @@
                 <h2 class="w-1/2 font-medium">Datos de entgrega</h2>
                 <div class="w-1/2 text-right">
                   {#if order.seen == ""}
-                    <span class="badge badge-outline badge-secondary">Recibido</span>
+                    <span class="badge badge-outline badge-secondary">Pendiente</span>
                   {:else}
                     <span class="badge badge-outline badge-primary">Procesado</span>
                   {/if}

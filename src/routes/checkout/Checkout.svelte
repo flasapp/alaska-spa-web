@@ -195,8 +195,13 @@
 				</div>
 			{/if}
 			<div class="w-full lg:w-1/2 m-auto text-left" style="line-height: 1.2rem">
-				<h2 class="text-md font-regular">{ steps[$ShoppingCart.step].title }</h2>
-				<small class="text-md font-light">{ steps[$ShoppingCart.step].description }</small><br><br>
+				{#if orderFinished}
+					<h2 class="text-md font-regular">Pedido finalizado</h2>
+					<small class="text-md font-light">Se ha enviado un email a su casilla de correo con mas información sobre su compra.</small><br><br>
+				{:else}
+					<h2 class="text-md font-regular">{ steps[$ShoppingCart.step].title }</h2>
+					<small class="text-md font-light">{ steps[$ShoppingCart.step].description }</small><br><br>
+				{/if}
 				<div class="bg-gradient-to-r from-violet-400 to-blue-400 p-1 rounded">
 					<div class="bg-base-100">
 						{#if !orderFinished}

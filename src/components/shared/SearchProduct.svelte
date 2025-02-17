@@ -51,6 +51,12 @@
       products = [];
       // let resp = []
       let resp = await get(`products-by-name/${productName}`)
+      if(!resp.data){
+        products = []
+        loading = false;
+        seachDone = true;
+        return
+      } 
       let productsAux = resp.data.map( (product)=>{
         return {
           id: product.idProducto,

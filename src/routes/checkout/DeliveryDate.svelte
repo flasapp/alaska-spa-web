@@ -63,7 +63,6 @@
 	$: $ShoppingCart.deliveryInfo.schedule = delivery
 
 	function handleChangeDate(field, value){
-		console.log("Handle", field, value, minDate)
 		
 		if(field == 'day'){
 			
@@ -90,7 +89,7 @@
 			if(weekDay == 5){
 				schedules = [{
 					name: SCHDEULE_SATURDAY,
-					value: 1,
+					value: SCHDEULE_SATURDAY,
 					disabled: false
 				}]
 				return addToast({ text: `Los sábados entregamos únicamente de <b>${SCHDEULE_SATURDAY}</b>`, type: "info" })

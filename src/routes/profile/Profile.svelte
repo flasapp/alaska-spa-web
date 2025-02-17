@@ -254,7 +254,7 @@
 																{#if order.status == 1}
 																	<span class="badge badge-outline badge-primary">Procesado</span>
 																{:else if order.status == 0}
-																	<span class="badge badge-outline badge-secondary">Recibido</span>
+																	<span class="badge badge-outline badge-secondary">Pendiente</span>
 																{/if}
 															</td>
 															<td class="">

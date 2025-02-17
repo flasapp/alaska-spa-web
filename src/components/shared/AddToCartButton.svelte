@@ -13,9 +13,9 @@
   }
 </script>
 
-<div class="flex flex-col md:flex-row justify-center gap-2 md:gap-0">
+<div class="flex flex-col lg:flex-row justify-center gap-2 lg:gap-0">
   {#if showQuantity}
-    <div class="relative flex items-center w-full md:w-5/12 justify-center">
+    <div class="relative flex items-center w-full lg:w-5/12 justify-center">
       <button
         type="button"
         class="border-current bg-base-200 rounded-full p-4 md:p-2"
@@ -63,8 +63,8 @@
     <!-- <input type="number" placeholder="" class="input input-bordered w-3/12" bind:value={quantity} min="1"/> -->
   {/if}
   <button
-    class="btn btn-outline btn-primary mx-0 md:mx-2 {showQuantity
-      ? 'w-full md:w-7/12'
+    class="btn btn-outline btn-primary mx-0 lg:mx-2 {showQuantity
+      ? 'w-full lg:w-7/12'
       : 'w-full'}"
       style="padding: 4px;"
     on:click={addToCart}

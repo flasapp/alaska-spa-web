@@ -152,11 +152,11 @@
 					label="Calle *" 
 					on:changed={handleChange('street', delivery.street)}/>
 				<Input 
-					placeholder="Número *" 
+					placeholder="Número" 
 					bind:value={delivery.number} 
 					icon="{LocationIcon}" 
 					invalidInput={invalidNumber} 
-					label="Número"
+					label="Número *"
 					on:changed={handleChange('number', delivery.number)}/>
 				<Input 
 					placeholder="Esquina" 
