@@ -1,6 +1,5 @@
 <script>
 	import { ShoppingCart } from "../../stores/Cart";
-console.log("🚀  --> $ShoppingCart.products:", $ShoppingCart.products)
 </script>
 
 <div class="hidden sm:block dropdown dropdown-end {$ShoppingCart.products.length ? 'cart-active' : ''}" role="button">
