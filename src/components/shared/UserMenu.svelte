@@ -22,17 +22,17 @@
 	<UserIcon />
 	</div>
 	<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-base-300 rounded-box w-52 shadow-xl">
-	<li>
-		<b>Hola, {$GeneralStore.userLogged.name} {$GeneralStore.userLogged.lastName}</b>
-	</li>
-	<li>
-		<a class="justify-between" href="/perfil">
-		Perfil
-		<span class="badge">New</span>
-		</a>
-	</li>
-	
-	<li><button on:click="{handleLogout}">Salir/Logout</button></li>
+		<li>
+			<b>Hola {$GeneralStore.userLogged.name} {$GeneralStore.userLogged.lastName}</b>
+		</li>
+		<li>
+			<a class="justify-between" href="/perfil">
+			Perfil
+			<span class="badge">Nuevo</span>
+			</a>
+		</li>
+		
+		<li><button on:click="{handleLogout}">Salir / Cerrar Sesión</button></li>
 	</ul>
 </div>
 <style>
