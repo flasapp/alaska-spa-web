@@ -1,7 +1,6 @@
 <script>
-  
-  import { ShoppingCart } from "../../stores/Cart";
-  
+	import { ShoppingCart } from "../../stores/Cart";
+console.log("🚀  --> $ShoppingCart.products:", $ShoppingCart.products)
 </script>
 
 <div class="hidden sm:block dropdown dropdown-end {$ShoppingCart.products.length ? 'cart-active' : ''}" role="button">
@@ -31,11 +30,18 @@
     class="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-base-300 rounded-box w-52 shadow-xl dropdown-top"
   >
     <div class="card-body">
-      <span class="font-medium text-md"
+	  <!-- Show part of products: name, quantity and subtotal -->
+	  <!-- {#each $ShoppingCart.products as product}
+		<div class="flex justify-between">
+		  <span class="text-sm">{product.title}</span>
+		  <span class="text-sm">{product.quantity} unid.</span>
+		</div>
+	  {/each} -->
+	  <span class="font-medium text-md"
         >{$ShoppingCart.products.length} producto{$ShoppingCart.products
           .length > 1
           ? "s"
-          : ""}</span
+          : ""}, {$ShoppingCart.products.reduce((acc, prod) => acc + prod.quantity, 0)} unid.</span
       >
       <span class="font-medium text-md">Total: $ {$ShoppingCart.total}</span>
       <div class="card-actions">
