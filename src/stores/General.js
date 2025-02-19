@@ -26,7 +26,7 @@ export const getCategories = async () => {
 		return {
 			id: category.idCategoria,
 			name: category.nombre,
-			url: '/categorias/' + category.nombre.replace(/\s/g, "-").toLowerCase() + "?catSku=" + category.idCategoria,
+			url: '/categorias/' + category.nombre.replace(/[\s\/]/g, "-").toLowerCase() + "?catSku=" + category.idCategoria,
 		};
     });
 

@@ -5,6 +5,7 @@
 
 	//Utils Stores
 	import { get } from "@/lib/methods/api";
+	import { handleProductData } from "@/helpers/utils"
 	import GeneralStore from "@/stores/General";
 	//Components
 	import ProductCard from "@/components/shared/ProductCard.svelte";
@@ -41,24 +42,12 @@
 
 	async function getProductsByCategory(id) {
 		products = [];
+		$GeneralStore.searchingProductsList = []
 		let resp = await get(`products-category/${id}`);
-		let data = []
 		if(resp.data){
-			data = resp.data.map( (product)=>{
-				return {
-					id: product.idProducto,
-					title: product.nombre,
-					description: product.descripcion,
-					image: product.foto,
-					price: product.precio,
-					category: product.nombre_categoria,
-					sale: product.oferta == 1,
-					url: product?.nombre?.replace(/\s/g, '-').toLowerCase() + '?sku=' + product.idProducto
-				}	
-			})
+			products = await handleProductData(resp.data)
+			$GeneralStore.searchingProductsList = products
 		}
-		products = data;
-		$GeneralStore.searchingProductsList = products;
 	}
 
 	const filterProducts = () => {

@@ -7,7 +7,7 @@
 
   // Utils and Store
   // import { get } from "@/lib/api/methods-local";
-  import GeneralStore from "../../stores/General";
+  import GeneralStore from "@/stores/General";
   //Import Components
   import AddToCartButton from "./AddToCartButton.svelte";
   import FullSkeletonProduct from "./FullSkeletonProduct.svelte";
@@ -31,9 +31,12 @@
 
   function getImage() {
     const img = document.getElementById(`product-image-${product.id}`);
-    img.onload = () => {
-      loadingImage = false;
-    };
+    if(img){
+      img.onload = () => {
+        loadingImage = false;
+      };
+    }
+    
   }
 
   function goBack() {

@@ -1,10 +1,12 @@
 <script>
   // Configurations
   const { VITE_IMAGES_PATH } = import.meta.env;
-  // Utils
+  //Core
+  import { onMount } from "svelte";
+  // Utils adn Stores
   import { get } from "@/lib/methods/api"
   import GeneralStore from "@/stores/General";
-  import { onMount } from "svelte";
+	import { handleProductData } from "@/helpers/utils"
   //Components
   import ProductCard from "../shared/ProductCard.svelte";
   import TypingText from "../shared/TypingText.svelte";
@@ -31,20 +33,10 @@
   }
 
   async function getFeaturedProducts() {
+    products = []
     let resp = await get("products-featured")
-    products = resp.data.map( (product)=>{
-			return {
-				id: product.idProducto,
-				title: product.nombre,
-				description: product.descripcion,
-				image: product.foto,
-				price: product.precio,
-				category: product.nombre_categoria,
-        sale: product.oferta == 1,
-        url: product?.nombre?.replace(/\s/g, '-').toLowerCase() + '?sku=' + product.idProducto
-			}	
-		})
-    return products.data
+    if(resp.data) products = await handleProductData(resp.data)
+    return products
   }
 
   onMount(async () => {
