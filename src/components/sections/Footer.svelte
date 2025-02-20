@@ -12,7 +12,7 @@
       <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="currentColor"></path>
     </svg>
   </div>
-
+  <!-- Links of enterprise -->
   <footer class="footer p-10 text-base-content">
     <aside>
       <h6 class="footer-title">Alaska Congelados.</h6>
@@ -33,7 +33,7 @@
       <a class="link link-hover" href="mailto:alaskacongelaods@gmail.com">Contáctanos</a>
     </nav> 
   </footer>
-
+  <!-- Google Maps iframe -->
   <iframe 
     src="{googleMapRef}" 
     width="100%" 
@@ -44,12 +44,13 @@
     loading="lazy" 
     referrerpolicy="no-referrer-when-downgrade">
   </iframe>
-
+  <!-- Copyright -->
   <div class="container mx-auto text-center py-4">
     <p class="text-sm">
-      © 2025 Alaska Congelados - Sitio desarrollador por <a href="https://flasap.com.uy" class="link link-hover">flasap</a>
+      © 2025 Alaska Congelados - Sitio desarrollador por <a href="https://flasap.com.uy" target="_blank" class="link link-hover">flasap</a>
     </p>
   </div>
+  
 </div>
 
 <style>
