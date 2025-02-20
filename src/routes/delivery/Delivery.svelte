@@ -36,7 +36,7 @@
 <InfoSection {title} {breadcrumbs}>
 	<img src={mapImg}/><br>
 	<p class="font-regular">
-		Se realizan envíos <span class="text-secondary font-medium">sin costo</span> en todo montevideo. Nuestro horario de envíos a
+		Se realizan <span class="font-bold">envíos sin costo</span> en todo montevideo. Nuestro horario de envíos a
 		domicilio es entre las 11:00 hrs y las 20:00 hrs
 	</p>
 	<p class="my-2">
@@ -64,8 +64,10 @@
 		</li>
   	</ul>
   
-
-	<p class="mt-4 font-medium text-secondary">Aceptamos tarjetas de crédito/débito a domicilio</p>
+	<div role="alert" class="alert alert-info mt-4">
+		<InfoIcon />
+		<span>Aceptamos tarjetas de crédito/débito a domicilio</span>
+	</div>
 	<div class="divider divider-primary mt-8">Mínimo de compra por Barrio</div>
 	{#await neighbourhoodsPromise}
 		<div class="w-full" style="min-height: 50px">

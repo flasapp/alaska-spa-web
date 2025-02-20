@@ -21,8 +21,9 @@
   import Profile from '@/routes/profile/Profile.svelte';
   import Order from '@/routes/orders/Order.svelte';
   import RecoverPassword from '@/routes/recoverPassword/RecoverPassword.svelte';
+  import Notfound from '@/routes/notFound/NotFound.svelte';
 
-  let isLoading = true;
+  // let isLoading = true;
 
   router.subscribe( _ => window.scrollTo(0, 0)); // --> To scroll up everytime route change
 
@@ -31,12 +32,12 @@
     let resp = await get('settings/configs');
     // resp.fgPedidos = 0; //Toggle to test this
     $GeneralStore.blockOrders = resp.fgPedidos != 1 && resp.fgPedidos != '1';
-    isLoading = false; // Hide overlay after getting the settings
+    // isLoading = false; // Hide overlay after getting the settings
   });
 
 
 </script>
-<LoadingOverlay {isLoading} />
+<!-- <LoadingOverlay {isLoading} /> -->
 <Layout>
   {#key $router.path}
     <div
@@ -48,13 +49,14 @@
       <Route path="/horarios"><Schedule/></Route>
       <Route path="/delivery"><Delivery/></Route>
       <Route path="/contacto"><Contact/></Route>
-      <Route path="/metodos-de-pago"><Payments/></Route>
+      <Route path="/medios-de-pago"><Payments/></Route>
       <Route path="/checkout"><Checkout/></Route>
       <Route path="/productos/:name"><Product/></Route>
       <Route path="/categorias/:name"><Category/></Route>
       <Route path="/perfil"><Profile/></Route>
       <Route path="/pedidos/:order/:user"><Order/></Route>
       <Route path="/recuperar-usuario/:email"><RecoverPassword/></Route>
+      <Route fallback><Notfound/></Route>
     </div>
   {/key}
 </Layout>
