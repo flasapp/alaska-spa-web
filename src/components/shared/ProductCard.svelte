@@ -101,7 +101,8 @@
   </article>
 {:else}
   <article
-    class="p-16 m-auto w-full sm:w-1/2 group relative item-product overflow-hidden rounded-md bg-base-100 transition-all duration-200 border-base-300 rounded"
+    class="p-4 m-auto w-3/4 sm:w-1/2 group relative item-product overflow-hidden rounded-md bg-base-100 transition-all duration-200 border-base-300 rounde mt-16 border-solid border-2 border-violet-400"
+    style="max-width: 400px;"
   >
     <div
       class="item-product-img aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none lg:h-80 relative"
