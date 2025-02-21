@@ -1,12 +1,12 @@
 <script>
+  //Core
+  import { onMount } from "svelte";
+  import { meta, router } from 'tinro';
   //Utils Stores
   import { get } from "@/lib/methods/api";
   import GeneralStore from "@/stores/General";
 	import { handleProductData } from "@/helpers/utils"
-
-  //Core
-  import { onMount } from "svelte";
-  import { meta } from 'tinro';
+	import { addToast } from "@/stores/Toasts"
   //Components
   import ProductCard from "@/components/shared/ProductCard.svelte";
   import FeaturedProducts from "@/components/sections/FeaturedProdcuts.svelte";
@@ -29,6 +29,10 @@
       prod = await handleProductData(resp.data)
       return prod[0];
     } else {
+      	addToast({ text: "Producto no encontrado, redireccionando...", type: "error" });
+        setTimeout(() => {
+		      router.goto(`/`)
+        }, 2000);
       	throw new Error({ text: "No se encontró el producto deseado, disculpa las molestias." });
     }
   }
