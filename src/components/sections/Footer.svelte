@@ -18,7 +18,7 @@
       <h6 class="footer-title">Alaska Congelados.</h6>
       <p>Dirección: <a class="link link-hover" href="{googleMapLink}" target="_blank">San José 1290 esquina Aquiles Lanza</a></p>
       <p>Teléfono: <a class="link link-hover" href="tel:+59829013519">29013519</a></p>
-      <p>Email: <a class="link link-hover" href="mailto:alaskacongelaods@gmail.com">alaskacongelaods@gmail.com</a></p>
+      <p>Email: <a class="link link-hover" href="mailto:alaskacongelados@gmail.com">alaskacongelados@gmail.com</a></p>
     </aside> 
     <nav>
       <h6 class="footer-title">Entregas.</h6>
@@ -30,7 +30,7 @@
     <nav>
       <h6 class="footer-title">Información.</h6> 
       <a class="link link-hover" href="/nosotros">Horario de atención</a>
-      <a class="link link-hover" href="mailto:alaskacongelaods@gmail.com">Contáctanos</a>
+      <a class="link link-hover" href="mailto:alaskacongelados@gmail.com">Contáctanos</a>
     </nav> 
   </footer>
   <!-- Google Maps iframe -->
