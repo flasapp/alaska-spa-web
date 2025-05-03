@@ -87,10 +87,13 @@
 
 			//If value is saturday just one schedule is available
 			if(weekDay == 5){
+				//User should be able to select date until 09:00
+				//Get the now hour
+				let nowHour = new Date().getHours()
 				schedules = [{
 					name: SCHDEULE_SATURDAY,
 					value: SCHDEULE_SATURDAY,
-					disabled: false
+					disabled: nowHour >= 9
 				}]
 				return addToast({ text: `Los sábados entregamos únicamente de <b>${SCHDEULE_SATURDAY}</b>`, type: "info" })
 			}
@@ -100,7 +103,7 @@
 			let nowHour = new Date().getHours()
 			schedules[0].disabled = value == minDate && nowHour >= 10
 			schedules[1].disabled = value == minDate && nowHour >= 13
-			schedules[2].disabled = value == minDate && nowHour >= 17
+			schedules[2].disabled = value == minDate && nowHour >= 15
 			
 
 		}
