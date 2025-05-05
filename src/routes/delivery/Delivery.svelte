@@ -58,7 +58,7 @@
 		</li>
 		<li>
 		17 a 20 hrs 
-		<div class="tooltip tooltip-right" data-tip="Para este horario el pedido debe realizarse antes de las 17hrs.">
+		<div class="tooltip tooltip-right" data-tip="Para este horario el pedido debe realizarse antes de las 1530hrs.">
 			<InfoIcon />
 		</div>
 		</li>
