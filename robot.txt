@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /carrito/
+Disallow: /checkout/
+Disallow: /usuario/
+Disallow: /backend/
+Allow: /
+
+Sitemap: https://spa.alaskacongelados.com.uy/sitemap.xml
