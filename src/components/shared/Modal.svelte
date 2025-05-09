@@ -8,7 +8,7 @@
 	}
 </script>
 <div class=overlay-dialog>
-	<dialog open class="bg-base-100">
+	<dialog open class="bg-base-100 rounded-lg shadow-xl p-8 sm:p-16 w-[95%] sm:w-1/2 lg:w-1/3">
 		<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={close}>✕</button>
 		<slot></slot>
 	</dialog>
@@ -45,11 +45,11 @@
 	.overlay-dialog dialog{
 		pointer-events: auto;
 		position: fixed;
-		top: 25%;
-		/* left: 25%; */
-		/* transform: translate(-50%, -50%); */
+		top: 100px;
 		border-radius: 8px;
 		box-shadow: 0 0 10px rgba(0,0,0,.5);
-		padding: 40px;
+
+		overflow: scroll;
+		max-height: 80vh;
 	}
 </style>

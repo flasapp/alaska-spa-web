@@ -5,7 +5,7 @@
   let classBackgroundSvg = "text-base-200"
 </script>
 
-<div class="w-full relative {classBackground} mt-10">
+<div class="w-full relative {classBackground} mt-10" style="z-index:-1">
   <!-- Forma ondulada -->
   <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-10" style="top:-30px">
     <svg class="relative block w-full h-10 0 {classBackgroundSvg}" viewBox="0 0 1200 120" preserveAspectRatio="none">
