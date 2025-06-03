@@ -22,12 +22,19 @@
   import Order from '@/routes/orders/Order.svelte';
   import RecoverPassword from '@/routes/recoverPassword/RecoverPassword.svelte';
   import Notfound from '@/routes/notFound/NotFound.svelte';
+	import { addToast } from "@/stores/Toasts"
 
   // let isLoading = true;
 
   router.subscribe( _ => window.scrollTo(0, 0)); // --> To scroll up everytime route change
 
   onMount(async () => {
+    //Show toaster until 30 of august
+    let now = new Date();
+    if(now.getDate() < 30 && now.getMonth() < 7) {
+      addToast({ text: "<b>Bienvenido</b> a la nueva web de <b>Alaska</b>, si ya estás <b>registrado</b> puedes utilizar el mismo <b>usuario y contraseña</b>", type: "info" });
+
+    }
     // Get settings
     let resp = await get('settings/configs');
     // resp.fgPedidos = 0; //Toggle to test this

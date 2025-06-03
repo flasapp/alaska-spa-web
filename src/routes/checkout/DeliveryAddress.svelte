@@ -109,7 +109,6 @@
 	}
 
 	onMount(async () => {
-		console.log($GeneralStore.userLogged)
 		delivery = {
 			phone: $GeneralStore.userLogged.phone,
 			street: $GeneralStore.userLogged.address.street,
