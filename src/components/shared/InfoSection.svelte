@@ -17,7 +17,7 @@
   </div>
   
   <section class="text-left">
-    <h2 class="text-2xl font-medium">{title}</h2>
+    <h1 class="text-2xl font-medium">{title}</h1>
 		<div>
       <div class="w-full lg:w-1/2 m-auto text-left mt-4">
 				<div class="bg-gradient-to-r from-violet-400 to-blue-400 p-1 rounded">

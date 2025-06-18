@@ -96,7 +96,7 @@
 		</div>
 		<!-- Search input to filter the products -->
 		<div class="flex justify-between items-center pb-4">
-			<h2 class="text-2xl font-medium">{category?.name}</h2>
+			<h1 class="text-2xl font-medium">{category?.name}</h1>
 			<div class="flex items-center">
 			<label
 				class="search-input input input-bordered flex items-center gap-2"

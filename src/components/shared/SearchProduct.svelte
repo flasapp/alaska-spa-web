@@ -65,8 +65,9 @@
           image: product.foto,
           price: product.precio,
           category: product.nombre_categoria,
-          sale: product.oferta == 1,
-              url: product?.nombre?.replace(/\s/g, '-').toLowerCase() + '?sku=' + product.idProducto
+          sale: product.oferta != 0,
+          url: product?.nombre?.replace(/\s/g, '-').toLowerCase() + '?sku=' + product.idProducto,
+          stock: product.stock != 0,
         }	
       })
       products = productsAux,length ? productsAux : []

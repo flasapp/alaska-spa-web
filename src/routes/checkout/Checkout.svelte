@@ -179,7 +179,7 @@
     </div>
 
 	<div class="text-left">
-    	<h2 class="text-2xl font-medium">Checkout</h2>
+    	<h1 class="text-2xl font-medium">Checkout</h1>
 		<div>
 			{#if !orderFinished}
 				<div class="stepper-container">
