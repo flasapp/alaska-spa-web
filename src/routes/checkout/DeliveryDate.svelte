@@ -56,11 +56,34 @@
 	let year = now.getFullYear();
 	let month = String(now.getMonth() + 1).padStart(2, '0');
 	let day = String(now.getDate()).padStart(2, '0');
-
+	let nowHour = new Date().getHours()
 	let minDate = `${year}-${month}-${day}`;
 	
 	//Refresh delivery info
 	$: $ShoppingCart.deliveryInfo.schedule = delivery
+
+	const setDisabledSaturdayOption = (selectedDate, nowDate)=>{
+		const now = new Date(nowDate);
+		const selected = new Date(selectedDate);
+
+		const isFriday = now.getDay() === 4; // Viernes
+		const nowHourIsLate = nowHour >= 15;
+
+		// Sumar un día para obtener el sábado siguiente
+		const nextSaturday = new Date(now);
+		nextSaturday.setDate(now.getDate() + 1);
+
+		// Comparar solo año/mes/día (sin tiempo)
+		const isNextSaturday =
+			selected.getFullYear() === nextSaturday.getFullYear() &&
+			selected.getMonth() === nextSaturday.getMonth() &&
+			selected.getDate() === nextSaturday.getDate();
+
+		if (isFriday && isNextSaturday && nowHourIsLate) {
+			return true;
+		}
+		return false;
+	}
 
 	function handleChangeDate(field, value){
 		
@@ -89,22 +112,20 @@
 			if(weekDay == 5){
 				//User should be able to select date until 09:00
 				//Get the now hour
-				let nowHour = new Date().getHours()
 				schedules = [{
 					name: SCHDEULE_SATURDAY,
 					value: SCHDEULE_SATURDAY,
-					disabled: nowHour >= 9
+					disabled: setDisabledSaturdayOption(value, minDate)
 				}]
-				return addToast({ text: `Los sábados entregamos únicamente de <b>${SCHDEULE_SATURDAY}</b>`, type: "info" })
+				console.log("🚀  --> handleChangeDate --> schedules:", schedules)
+				return addToast({ text: `Los sábados entregamos únicamente de <b>${SCHDEULE_SATURDAY}</b> y<br>el pedido debe hacerse hasta las 15:00 hrs del viernes`, type: "info" })
+			}else{
+				schedules = SCHEDULES
+				//Disable each schedule depending the hour
+				schedules[0].disabled = value == minDate && nowHour >= 10
+				schedules[1].disabled = value == minDate && nowHour >= 13
+				schedules[2].disabled = value == minDate && nowHour >= 15
 			}
-
-			schedules = SCHEDULES
-			//Disable each schedule depending the hour
-			let nowHour = new Date().getHours()
-			schedules[0].disabled = value == minDate && nowHour >= 10
-			schedules[1].disabled = value == minDate && nowHour >= 13
-			schedules[2].disabled = value == minDate && nowHour >= 15
-			
 
 		}
 	}
