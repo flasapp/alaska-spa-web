@@ -4,10 +4,9 @@
   let classBackground = "bg-base-200"
   let classBackgroundSvg = "text-base-200"
 </script>
-
-<div class="w-full relative {classBackground} mt-10" style="z-index:-1">
+<div class="w-full relative {classBackground} mt-10" >
   <!-- Forma ondulada -->
-  <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-10" style="top:-30px">
+  <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-10" style="top:-30px; z-index:-1">
     <svg class="relative block w-full h-10 0 {classBackgroundSvg}" viewBox="0 0 1200 120" preserveAspectRatio="none">
       <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="currentColor"></path>
     </svg>
