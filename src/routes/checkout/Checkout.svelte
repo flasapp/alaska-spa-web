@@ -114,28 +114,28 @@
 		
 		//Info to send
 		let newOrder = {
-			modoPago: orderBody.paymentMethod,
-			observaciones: orderBody.observations,
+			paymentMethod: orderBody.paymentMethod,
+			observations: orderBody.observations,
 			total: orderBody.total,
-			usuario: {
-				mail: orderBody.user.email,
-				nomUsuario: orderBody.user.name,
-				apellido: orderBody.user.lastname,
-				tel: orderBody.user.phone,
-				calle: orderBody.user.street,
-				numero: orderBody.user.number,
-				esquina: orderBody.user.corner,
-				apto: orderBody.user.depto,
-				idBarrio: orderBody.user.neighbourhood,
-				idUsuario: orderBody.user.id
+			user: {
+				email: orderBody.user.email,
+				name: orderBody.user.name,
+				lastName: orderBody.user.lastname,
+				phone: orderBody.user.phone,
+				street: orderBody.user.street,
+				number: orderBody.user.number,
+				corner: orderBody.user.corner,
+				apartment: orderBody.user.depto,
+				neighborhoodId: orderBody.user.neighbourhood,
+				id: orderBody.user.id
 			},
-			fechaEntrega: {
-				horario: orderBody.schedule.hour,
-				anioElegido: orderBody.schedule.day.split('-')[0],
-				mesElegido: orderBody.schedule.day.split('-')[1],
-				diaElegido: orderBody.schedule.day.split('-')[2]
+			deliveryDate: {
+				schedule: orderBody.schedule.hour,
+				year: orderBody.schedule.day.split('-')[0],
+				month: orderBody.schedule.day.split('-')[1],
+				day: orderBody.schedule.day.split('-')[2]
 			},
-			carrito: {
+			cart: {
 				items: orderBody.products.map(product => {
 					return {
 						_id: product.id,

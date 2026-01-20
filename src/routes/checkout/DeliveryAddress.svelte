@@ -74,9 +74,9 @@
 		let resp = await get('settings/neighbourhoods');
 		neighbourhoods = resp?.data?.map( (neigh)=>{
 			return {
-				id: neigh.idBarrio,
+				id: neigh.id,
 				title: neigh.title,
-				amount: neigh.monto
+				amount: neigh.amount
 			}	
 		})
 		// return neighbourhoods

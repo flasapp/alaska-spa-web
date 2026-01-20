@@ -32,9 +32,9 @@
 		let resp = await get(`categories/${id}`);
 		let categories = resp.data.map( (cat)=>{
 			return {
-				id: cat.idCategoria,
-				name: cat.nombre,
-				description: cat.descripcion,
+				id: cat.id,
+				name: cat.name,
+				description: cat.description,
 			}	
 		});
 		category = categories[0];

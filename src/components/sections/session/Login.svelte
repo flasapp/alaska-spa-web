@@ -42,20 +42,20 @@
 		let response = await post('login', user)
 		console.log("🚀  --> response:", response)
 		submitted = false
-		if (!response.idUsuario) return addToast({ text: "Email y/o contraseña incorrecta", type: "Error" })
+		if (!response.id) return addToast({ text: "Email y/o contraseña incorrecta", type: "Error" })
 		const userLogged = {
-			id: response.idUsuario,
-			name: response.nomUsuario,
-			lastName: response.apellido,
-			email: response.mail,
-			phone: response.tel,
+			id: response.id,
+			name: response.name,
+			lastName: response.lastName,
+			email: response.email,
+			phone: response.phone,
 			token: response.token,
 			address: {
-				street: response.calle,
-				number: response.numero,
-				depto: response.apto,
-				corner: response.esquina,
-				neighbourhood: response.idBarrio
+				street: response.street,
+				number: response.number,
+				depto: response.apartment,
+				corner: response.corner,
+				neighbourhood: response.neighborhoodId
 			}
 		}
 		setLoggedUser(userLogged)

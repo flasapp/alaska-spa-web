@@ -22,13 +22,13 @@ const GeneralStore = writable({
 export const getCategories = async () => {
 	// const response = await fetch('http://localhost:3000/api/categories')
 	let results = await get('categories')
-    let categories = results?.data.map((category) => {
+	let categories = results?.data.map((category) => {
 		return {
-			id: category.idCategoria,
-			name: category.nombre,
-			url: '/categorias/' + category.nombre.replace(/[\s\/]/g, "-").toLowerCase() + "?catSku=" + category.idCategoria,
+			id: category.id,
+			name: category.name,
+			url: '/categorias/' + category.name.replace(/[\s\/]/g, "-").toLowerCase() + "?catSku=" + category.id,
 		};
-    });
+	});
 
 	GeneralStore.update((settings) => {
 		settings.categories = categories

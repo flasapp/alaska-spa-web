@@ -47,12 +47,12 @@
 		if(!user.name || !user.lastname || !user.phone || !user.mail || !user.pass) return addToast({ text: "Todos los campos son obligatorios", type: "Error" });
 		submitted = true
 		let body = {
-			mail: user.mail,
-			pass: user.pass,
-			nomUsuario: user.name,
-			apellido: user.lastname,
-			tel: user.phone,
-			fechaAlta: new Date().toISOString().split('T')[0]
+			email: user.mail,
+			password: user.pass,
+			name: user.name,
+			lastName: user.lastname,
+			phone: user.phone,
+			createdAt: new Date().toISOString().split('T')[0]
 		}
 		let resp = await post('signup', body)
 		submitted = false
@@ -63,26 +63,26 @@
 		}
 		if(resp.success){
 			let credentials = {
-				mail: user.mail,
-				pass: user.pass
+				email: user.mail,
+				password: user.pass
 			}
 			console.log("🚀  --> credentials:", credentials)
 			let respLogin = await post('login', credentials)
 			console.log("🚀  --> respLogin:", respLogin)
-			if (!respLogin.idUsuario) return addToast({ text: "Email y/o contraseña incorrecta", type: "Error" })
+			if (!respLogin.id) return addToast({ text: "Email y/o contraseña incorrecta", type: "Error" })
 			const userLogged = {
-				id: respLogin.idUsuario,
-				name: respLogin.nomUsuario,
-				lastName: respLogin.apellido,
-				email: respLogin.mail,
-				phone: respLogin.tel,
+				id: respLogin.id,
+				name: respLogin.name,
+				lastName: respLogin.lastName,
+				email: respLogin.email,
+				phone: respLogin.phone,
 				token: respLogin.token,
 				address: {
-					street: respLogin.calle,
-					number: respLogin.numero,
-					depto: respLogin.apto,
-					corner: respLogin.esquina,
-					neighbourhood: respLogin.idBarrio
+					street: respLogin.street,
+					number: respLogin.number,
+					depto: respLogin.apartment,
+					corner: respLogin.corner,
+					neighbourhood: respLogin.neighborhoodId
 				}
 			}
 			setLoggedUser(userLogged)

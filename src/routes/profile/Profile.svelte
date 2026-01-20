@@ -87,9 +87,9 @@
 		let resp = await get('settings/neighbourhoods');
 		let neighbourhoods = resp?.data?.map( (neigh)=>{
 			return {
-				id: neigh.idBarrio,
+				id: neigh.id,
 				title: neigh.title,
-				amount: neigh.monto
+				amount: neigh.amount
 			}	
 		})
 		$GeneralSettings.neighbourhoods = neighbourhoods
