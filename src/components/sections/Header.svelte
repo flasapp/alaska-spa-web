@@ -80,11 +80,11 @@
 							><path d="M5 12h14M12 5l7 7-7 7" /></svg
 						>
 					</button>
-					<button
+					<!-- <button
 						class="text-slate-600 hover:text-slate-900 font-medium text-lg border-b-2 border-transparent hover:border-slate-300 transition-all"
 					>
 						Ver ofertas
-					</button>
+					</button> -->
 				</div>
 
 				<!-- Features Section -->
