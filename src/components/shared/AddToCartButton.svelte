@@ -1,31 +1,33 @@
 <script>
   //Store
-  import { ShoppingCart, addProduct } from "@/stores/Cart"
-  import { addToast } from "@/stores/Toasts"
-  import GeneralStore from "@/stores/General"
+  import { ShoppingCart, addProduct } from "@/stores/Cart";
+  import { addToast } from "@/stores/Toasts";
+  import GeneralStore from "@/stores/General";
   //Props
-  export let showQuantity = true
-  export let product = {}
-  
+  export let showQuantity = true;
+  export let product = {};
+
   //Variables
-  let addingProduct = false
-  let quantity = 1
+  let addingProduct = false;
+  let quantity = 1;
 
   function addToCart(event) {
     addingProduct = true;
-    addProduct(product, quantity)
+    addProduct(product, quantity);
     setTimeout(() => {
-      addingProduct = false
-      quantity = 1
-      addToast({ text: "Producto agregado al carrito", type: "Success" })
-    }, 500)
+      addingProduct = false;
+      quantity = 1;
+      addToast({ text: "Producto agregado al carrito", type: "Success" });
+    }, 500);
   }
 </script>
+
 {#if !product.stock}
   <div class="flex flex-col lg:flex-row justify-center gap-2 lg:gap-0">
     <button
       type="button"
-      class="w-full btn btn-outline btn-primary mx-0 lg:mx-2">
+      class="w-full btn btn-outline btn-primary mx-0 lg:mx-2"
+    >
       No hay stock
     </button>
   </div>
@@ -83,18 +85,17 @@
       class="btn btn-outline btn-primary mx-0 lg:mx-2 {showQuantity
         ? 'w-full lg:w-7/12'
         : 'w-full'}"
-        style="padding: 4px;"
-        on:click={addToCart}
-        disabled={$GeneralStore.blockOrders || addingProduct}
+      style="padding: 4px;"
+      on:click={addToCart}
+      disabled={$GeneralStore.blockOrders || addingProduct}
     >
       {#if $GeneralStore.blockOrders}
         No se pueden realizar pedidos
+      {:else if addingProduct}
+        <span class="loading loading-spinner"></span>
+        <!-- agregando... -->
       {:else}
-        {#if addingProduct}
-          <span class="loading loading-spinner"></span>
-          <!-- agregando... -->
-        {:else}
-          <svg
+        <!-- <svg
             xmlns="http://www.w3.org/2000/svg"
             class="mr-2 h-6 w-6 s-9TBH5qwna9k1"
             fill="none"
@@ -107,9 +108,8 @@
               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               class="s-9TBH5qwna9k1"
             ></path></svg
-          >
-          agregar
-        {/if}
+          > -->
+        agregar
       {/if}
     </button>
   </div>

@@ -1,224 +1,116 @@
 <script>
+	const { VITE_IMAGES_PATH } = import.meta.env;
+	import { onMount } from "svelte";
 	import gf from "@/assets/images/gf.jpg";
 	import veggie from "@/assets/images/veggie.jpg";
+	import ready from "@/assets/images/veggie.jpg";
+	import { get } from "@/lib/methods/api";
+	import GeneralStore from "@/stores/General";
+
+	const getFavCategories = async () => {
+		//Call API to Get Favorite Categories using the Service
+		const response = await get(
+			"categories?where[favorite]=1&offset=0&limit=6",
+		);
+		return response;
+	};
+
+	function setCategory(category) {
+		GeneralStore.update((data) => {
+			data.selectedCategory = category;
+			return data;
+		});
+	}
+
+	let categories = [];
+
+	onMount(async () => {
+		const resp = await getFavCategories();
+		categories = resp.data;
+		console.log(resp);
+	});
 </script>
-<section class="categories-section">
-	<div class="categories-container mt-8 py-4">
-		<a class="category-card" href="/categorias/vegetarianos?catSku=9">
-			<img src="{gf}" alt="Productos gluten free" class="category-image">
-			<div class="category-info">
-				<h3 class="category-title">Gluten Free</h3>
-				<p class="category-description">Descubre nuestra selección de productos sin gluten, perfectos para celíacos y amantes de una dieta libre de gluten.</p>
-			</div>
-		</a>
-		<a class="category-card"  href="/categorias/vegetarianos?catSku=9">
-			<img src="{veggie}" alt="Productos vetetarianos / Veggie" class="category-image">
-			<div class="category-info">
-				<h3 class="category-title">Veggie</h3>
-				<p class="category-description">Explora nuestra gama de productos vegetarianos y veganos, llenos de sabor y nutrientes para una alimentación consciente.</p>
-			</div>
-		</a>
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+	<div class="columns-1 md:columns-3 gap-5 space-y-5">
+		{#each categories as category, i}
+			<a
+				class="category-card group relative block w-full overflow-hidden rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 break-inside-avoid mb-5 border-white"
+				href={`categorias/${category.name.replace(/[\s\/]/g, "-").toLowerCase()}?catSku=${category.id}`}
+				on:click={setCategory(category)}
+				style="height: {i === 0 ? '500px' : '300px'}"
+			>
+				<!-- Background Image -->
+				<img
+					src={VITE_IMAGES_PATH + category.image}
+					alt={category.name}
+					class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+				/>
+
+				<!-- Gradient Overlay - Only visible on hover -->
+				<div
+					class="absolute inset-0 bg-gradient-to-t from-base-200/70 via-base-200/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+				></div>
+
+				<!-- Content - Only visible on hover -->
+				<div
+					class="absolute bottom-0 left-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+				>
+					<h3 class="text-white text-2xl font-semibold mb-2">
+						{category.name}
+					</h3>
+					<div
+						class="flex items-center text-white/80 group-hover:text-white text-sm transition-colors"
+					>
+						<span>Explorar</span>
+						<svg
+							class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M9 5l7 7-7 7"
+							/>
+						</svg>
+					</div>
+				</div>
+			</a>
+		{/each}
 	</div>
 </section>
+
 <style>
-
-	.category-card img{
-		object-fit: contain;
-	}
-
-	.categories-section {
-		max-width: 1200px;
-		margin: 40px auto;
-		padding: 20px;
-	}
-	h2 {
-		text-align: center;
-		color: #333;
-		margin-bottom: 30px;
-	}
-	.categories-container {
-		display: flex;
-		justify-content: space-around;
-		flex-wrap: wrap;
-	}
-	.category-card {
-		width: 45%;
-		max-width: 500px;
-		height: 300px;
-		position: relative;
-		/* overflow: hidden; */
-		border-radius: 4px;
-		box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-		margin-bottom: 20px;
-	}
-	.category-image {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		transition: all 0.5s ease;
-		filter: blur(2px);
-	}
-	.category-info {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		/* background-color: rgba(167, 139, 250, 0.1); */
-		transition: all 0.5s ease;
-		padding: 20px;
-		box-sizing: border-box;
-		border-radius: 4px;
-	}
-	.category-title {
-		font-size: 24px;
-		margin-bottom: 10px;
-		/* color: violet; */
-		text-align: center;
-		transition: all 0.5s ease;
-	}
-	.category-description {
-		text-align: center;
-		margin-bottom: 15px;
-		/* color: #5c5c5c; */
-		transition: all 0.5s ease;
-	}
-	.category-card:hover .category-image {
-		filter: blur(0);
-		transform: translateY(-30%);
-	}
-	.category-card:hover .category-info {
-		background-color: rgba(255, 255, 255, 0);
-		transform: translateY(100%);
-		height: 150px;
-		/* max-height: 100px; */
-		/* overflow: hidden; */
-	}
-	.category-card:hover .category-title {
-		transform: translateY(10px) scale(0.9);
-		color: #a78bfa;
-	}
-	.category-card:hover .category-description {
-		transform: translateY(10px) scale(0.9);
-		color: gray;
-	}
-	@media (max-width: 768px) {
-		.category-card {
+	/* Ensure masonry layout works properly */
+	@media (min-width: 768px) {
+		.columns-3 > * {
+			display: inline-block;
 			width: 100%;
 		}
 	}
 
-	@keyframes effectHover {
-		/* filter: blur(0); */
-		/* transform: translateY(-30%); */
-		from {
-			filter: blur(2px);
-			transform: translateY(0%);
-			opacity: 0;
-			/* transform: translateY(30%); */
-		}
-		to {
-			opacity: 1;
-			/* transform: translateY(0); */
-			filter: blur(0);
-			transform: translateY(-30%);
-		}
+	/* Scroll animation - initial state */
+	.category-card {
+		opacity: 1;
+		transform: translateY(30px);
+		transition:
+			opacity 0.6s ease-out,
+			transform 0.6s ease-out;
 	}
 
-	@keyframes unblur {
-		from {
-			filter: blur(2px);
-			transform: translateY(30%);
-		}
-		to {
-			filter: blur(0);
-			transform: translateY(0);
-		}
-	}
-	@keyframes titleHoverEffect {
-		from {
-			transform: translateY(0) scale(1);
-			color: #a78bfa;
-		}
-		to {
-			transform: translateY(10px) scale(0.9);
-			color: #5c5c5c;
-		}
-	}
-	@keyframes imageHoverEffect {
-		from {
-			filter: blur(2px);
-			transform: translateY(0%);
-		}
-		to {
-			filter: blur(0);
-			transform: translateY(-30%);
-		}
-	}
-	@keyframes infoHoverEffect {
-		from {
-			/* background-color: rgba(167, 139, 250, 0.0); */
-			transform: translateY(0%);
-			height: 100%;
-		}
-		to {
-			/* background-color: rgba(255, 255, 255, 0); */
-			transform: translateY(100%);
-			height: 150px;
-		}
-	}
-	@keyframes titleHoverEffect {
-		from {
-			transform: translateY(0) scale(1);
-			color: #a78bfa;
-		}
-		to {
-			transform: translateY(10px) scale(0.9);
-			color: #a78bfa;
-		}
-	}
-	@keyframes descriptionHoverEffect {
-		from {
-			transform: translateY(0) scale(1);
-			color: #5c5c5c;
-		}
-		to {
-			transform: translateY(10px) scale(0.9);
-			color: gray;
-		}
+	/* Stagger animation delay */
+	.category-card:nth-child(1) {
+		transition-delay: 0s;
 	}
 
-	/* Aplica la animación cuando el elemento entra en el viewport */
-
-	.category-image {
-		animation: imageHoverEffect 0.8s ease-out forwards;
-		animation-timeline: view();
-		animation-range: entry 100% cover 100%;
-	}
-	.category-info {
-		animation: infoHoverEffect 0.8s ease-out forwards;
-		animation-timeline: view();
-		animation-range: entry 100% cover 80%;
-	}
-	.category-title {
-		animation: titleHoverEffect 0.8s ease-out forwards;
-		animation-timeline: view();
-		animation-range: entry 100% cover 100%;
-		overflow: hidden;
-	}
-	.category-description{
-		animation: descriptionHoverEffect 0.8s ease-out forwards;
-		animation-timeline: view();
-		animation-range: entry 100% cover 50%;
+	.category-card:nth-child(2) {
+		transition-delay: 0.1s;
 	}
 
-	
-	
+	.category-card:nth-child(3) {
+		transition-delay: 0.2s;
+	}
 </style>

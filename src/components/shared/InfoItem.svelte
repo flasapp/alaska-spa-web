@@ -8,58 +8,44 @@
 </script>
 
 <div
-  class="p-1 bg-gradient-to-r from-violet-400 to-blue-400 info-item rounded shadow-md hover:shadow-xl {item.bgClass}"
+  class="flex gap-4 items-start p-4 hover:bg-white/50 rounded-xl transition-all duration-300 group"
 >
-  <!-- <figure>{@html item.image}</figure> -->
-  <div class="card-body bg-base-100">
-    <div style="
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    min-width: 300px;
-">
-      {@html item.image}
-      <h2
-      class="text-2xl font-regular {item.txClass}"
+  <div class="flex-shrink-0">
+    <div
+      class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 border border-slate-100"
     >
-      <!-- Gradient effect Text 
-				<span class="bg-gradient-to-r from-indigo-400 to-pink-600 bg-clip-text text-transparent s-ZNDfrm2Xj49P"><div class="s-35smNsNE2XDi"><span class="bg-clip-text text-transparent bg-[linear-gradient(to_right,theme(colors.indigo.400),theme(colors.indigo.100),theme(colors.sky.400),theme(colors.fuchsia.400),theme(colors.sky.400),theme(colors.indigo.100),theme(colors.indigo.400))] bg-[length:200%_auto] animate-gradient s-35smNsNE2XDi">{item.title}</span></div><GradientTitle></span> 
-			-->
+      {@html item.image}
+    </div>
+  </div>
+  <div class="flex flex-col gap-1 text-left">
+    <h3 class="text-md font-bold text-slate-800 leading-tight">
       {item.title}
-    </h2>
-    </div>
-    
-    <p>{item.description}</p>
-    <div class="card-actions justify-end">
-      <a class="link link-primary inline-flex link-hover" href={item.link}>
-        conocer más
-        <svg
-          class="text-base"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" />
-          <polyline points="9 6 15 12 9 18" /></svg
-        >
-      </a>
-    </div>
+    </h3>
+    <p class="text-slate-500 text-sm leading-relaxed">
+      {item.description || "Información disponible"}
+    </p>
+    <a
+      href={item.link}
+      class="inline-flex items-center gap-1 text-primary font-semibold text-sm mt-1 hover:gap-2 transition-all"
+    >
+      Conocer más
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M5 12h14" />
+        <path d="M13 5l7 7l-7 7" />
+      </svg>
+    </a>
   </div>
 </div>
 
 <style>
-  .info-item {
-    transition: all 0.3s;
-  }
-  .info-item:hover {
-    transform: translateY(-5px);
-  }
-  .card-body{
-    padding: 1rem !important;
-  }
+  /* No custom CSS needed, tailored with Tailwind */
 </style>

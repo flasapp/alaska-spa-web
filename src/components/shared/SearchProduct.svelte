@@ -1,24 +1,24 @@
 <script>
   //Svelte Core
-  import { onDestroy, onMount } from "svelte"
+  import { onDestroy, onMount } from "svelte";
   //Components and Stores
-  import { get } from "@/lib/methods/api"
-  import General from "@/stores/General"
+  import { get } from "@/lib/methods/api";
+  import General from "@/stores/General";
 
-  const NUMBER_CHAR_TO_SEARCH = 1
+  const NUMBER_CHAR_TO_SEARCH = 1;
 
-  let productName = ""
-  let products = []
-  let loading = false
-  let seachDone = false
+  let productName = "";
+  let products = [];
+  let loading = false;
+  let seachDone = false;
 
   function hideMe() {
     let timer = setTimeout(() => {
       General.update((data) => {
-        data.searchingProducts = false
+        data.searchingProducts = false;
         return data;
       });
-    }, 200)
+    }, 200);
   }
 
   function delay(callback, ms) {
@@ -35,7 +35,7 @@
 
   function setProduct(product) {
     General.update((data) => {
-      data.selectedProduct = product
+      data.selectedProduct = product;
       return data;
     });
   }
@@ -50,14 +50,14 @@
       loading = true;
       products = [];
       // let resp = []
-      let resp = await get(`products-by-name/${productName}`)
-      if(!resp.data){
-        products = []
+      let resp = await get(`products-by-name/${productName}`);
+      if (!resp.data) {
+        products = [];
         loading = false;
         seachDone = true;
-        return
-      } 
-      let productsAux = resp.data.map( (product)=>{
+        return;
+      }
+      let productsAux = resp.data.map((product) => {
         return {
           id: product.idProducto,
           title: product.nombre,
@@ -66,18 +66,21 @@
           price: product.precio,
           category: product.nombre_categoria,
           sale: product.oferta != 0,
-          url: product?.nombre?.replace(/\s/g, '-').toLowerCase() + '?sku=' + product.idProducto,
+          url:
+            product?.nombre?.replace(/\s/g, "-").toLowerCase() +
+            "?sku=" +
+            product.idProducto,
           stock: product.stock != 0,
-        }	
-      })
-      products = productsAux,length ? productsAux : []
+        };
+      });
+      products = productsAux.length ? productsAux : [];
       loading = false;
       seachDone = true;
     }
   }
   onMount(() => {
-    document.querySelector('#searchProductInput').focus();
-    if($General.searchingName){
+    document.querySelector("#searchProductInput").focus();
+    if ($General.searchingName) {
       productName = $General.searchingName;
       searchProductsByName();
       //focus programatically the input
@@ -99,10 +102,12 @@
       style="z-index:1"
     >
       <!-- Search Input -->
-      <div 
+      <div
         class="
-          search-container-input overflow-hidden rounded-t-lg bg-white shadow-md 
-          {productName.length > NUMBER_CHAR_TO_SEARCH && !loading && seachDone ? 'rounded-b-none' : 'rounded-b-lg'}
+          search-container-input overflow-hidden rounded-t-lg bg-white shadow-md
+          {productName.length > NUMBER_CHAR_TO_SEARCH && !loading && seachDone
+          ? 'rounded-b-none'
+          : 'rounded-b-lg'}
         "
       >
         <div class="relative">
