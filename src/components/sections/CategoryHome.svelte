@@ -32,6 +32,7 @@
 </script>
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+	<h2 class="text-2xl">Categorias destacadas</h2>
 	<div class="columns-1 md:columns-3 gap-5 space-y-5">
 		{#each categories as category, i}
 			<a

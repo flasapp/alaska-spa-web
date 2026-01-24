@@ -104,13 +104,7 @@
 
 	const getNeighbourhoods = async () => {
 		let resp = await get("settings/neighbourhoods");
-		let neighbourhoods = resp?.data?.map((neigh) => {
-			return {
-				id: neigh.id,
-				title: neigh.title,
-				amount: neigh.amount,
-			};
-		});
+		let neighbourhoods = resp?.data;
 		$GeneralSettings.neighbourhoods = neighbourhoods;
 	};
 
