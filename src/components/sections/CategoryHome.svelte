@@ -36,7 +36,7 @@
 	<div class="columns-1 md:columns-3 gap-5 space-y-5">
 		{#each categories as category, i}
 			<a
-				class="category-card group relative block w-full overflow-hidden rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 break-inside-avoid mb-5 border-white"
+				class="category-card relative block w-full overflow-hidden rounded-2xl shadow-sm transition-all duration-300 break-inside-avoid mb-5 border-white"
 				href={`categorias/${category.name.replace(/[\s\/]/g, "-").toLowerCase()}?catSku=${category.id}`}
 				on:click={setCategory(category)}
 				style="height: {i === 0 ? '500px' : '300px'}"
@@ -45,27 +45,27 @@
 				<img
 					src={VITE_IMAGES_PATH + category.image}
 					alt={category.name}
-					class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+					class="absolute inset-0 w-full h-full object-cover transition-transform duration-500"
 				/>
 
 				<!-- Gradient Overlay - Only visible on hover -->
 				<div
-					class="absolute inset-0 bg-gradient-to-t from-base-200/70 via-base-200/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+					class="absolute inset-0 bg-gradient-to-t transition-opacity duration-500"
 				></div>
 
 				<!-- Content - Only visible on hover -->
 				<div
-					class="absolute bottom-0 left-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+					class="absolute bottom-0 left-0 right-0 p-6 transition-opacity duration-500"
 				>
 					<h3 class="text-white text-2xl font-semibold mb-2">
 						{category.name}
 					</h3>
 					<div
-						class="flex items-center text-white/80 group-hover:text-white text-sm transition-colors"
+						class="flex items-center text-white text-sm transition-colors"
 					>
 						<span>Explorar</span>
 						<svg
-							class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+							class="w-4 h-4 ml-1 transition-transform"
 							fill="none"
 							viewBox="0 0 24 24"
 							stroke="currentColor"

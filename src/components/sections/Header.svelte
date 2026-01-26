@@ -4,7 +4,7 @@
 	import GradientTitle from "../shared/GradientTitle.svelte";
 	import heroImage from "@/assets/images/Hero1.png";
 
-	export let title = "Alaska Congelados";
+	export let title = "Alaska congelados.";
 
 	function toggleSearchingProdcuts(event) {
 		General.update((data) => {
@@ -24,18 +24,20 @@
 				class="text-left max-w-2xl text-animation-header z-10 relative"
 			>
 				<h1
-					class="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl text-slate-900 leading-[1.1]"
+					class="text-4xl font-extrabold tracking-tight sm:text-6xl md:text-5xl text-slate-900 leading-[1.1]"
 				>
-					<span class="block text-slate-600">Bienvenido a</span>
+					<!-- <span class="block text-slate-600">Bienvenido a</span> -->
 					<span
-						class="block bg-gradient-to-r from-violet-500 to-pink-500 bg-clip-text text-transparent"
+						class="block bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent"
+						style="line-height: 3.4rem;"
 					>
 						{title}
 					</span>
-					<div class="block mt-2">
-						compra mas fácil,
+					<div class="block text-slate-600">
+						Compra mas fácil,<br />
 						<span class="relative">
-							<span class="relative z-10 text-blue-600"
+							<span
+								class="relative z-10 text-blue-600 text-slate-600"
 								>compra mejor.</span
 							>
 							<!-- Decorator line could go here if needed as an absolute svg -->
@@ -55,7 +57,7 @@
 				</h1>
 
 				<p
-					class="mt-6 text-xl text-slate-500 max-w-lg leading-relaxed sub-text-animation-header"
+					class="mt-6 text-md text-slate-500 max-w-lg leading-relaxed sub-text-animation-header"
 				>
 					Encuentra los productos que necesitas de forma rápida y
 					sencilla. Calidad premium directamente a tu mesa.
@@ -65,7 +67,7 @@
 					class="mt-10 flex items-center gap-6 button-animation-header"
 				>
 					<button
-						class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3.5 rounded-full font-semibold text-lg flex items-center gap-2 transition-all shadow-lg hover:shadow-blue-500/30"
+						class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3.5 rounded-lg font-medium text-md flex items-center gap-2 transition-all shadow-lg hover:shadow-blue-500/30"
 						on:click={toggleSearchingProdcuts}
 					>
 						buscar producto
