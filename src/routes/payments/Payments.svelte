@@ -2,6 +2,7 @@
   import InfoSection from "@/components/shared/InfoSection.svelte";
   import paymentImg from "@/assets/images/payments.svg";
   import InfoIcon from "@/components/shared/icons/Info.svelte";
+  import SEO from "@/components/shared/SEO.svelte";
 
   let title = "Medios de pago";
   let breadcrumbs = [{
@@ -9,6 +10,11 @@
     url: "/medios-de-pago"
   }];
 </script>
+
+<SEO 
+  title="Medios de Pago | Alaska Congelados" 
+  description="Aceptamos diversos medios de pago: Efectivo, Tarjetas de Crédito y Débito, Tickets Alimentación. Consulta opciones para envíos a domicilio."
+/>
 
 <InfoSection {title} {breadcrumbs}>
 	<img src={paymentImg} alt="Medios de pago"  /><br>

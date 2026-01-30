@@ -5,6 +5,7 @@
 	import InfoSection from "@/components/shared/InfoSection.svelte";
 	import InfoIcon from "@/components/shared/icons/Info.svelte";
 	import mapImg from "@/assets/images/map.svg";
+	import SEO from "@/components/shared/SEO.svelte";
 
 	let neighbourhoods = [];
 	let neighbourhoodsPromise = null;
@@ -28,6 +29,11 @@
 		// }
 	});
 </script>
+
+<SEO 
+	title="Información de envíos | Alaska Congelados" 
+	description="Envíos sin costo en Montevideo. Consulta nuestros horarios de entrega y zonas de cobertura."
+/>
 
 <InfoSection {title} {breadcrumbs}>
 	<img src={mapImg} /><br />

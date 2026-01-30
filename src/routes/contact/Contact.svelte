@@ -1,11 +1,12 @@
 <script>
-  import InfoSection from "@/components/shared/InfoSection.svelte";
+	import InfoSection from "@/components/shared/InfoSection.svelte";
   import UserIcon from "@/components/shared/icons/User.svelte";
   import MailIcon from "@/components/shared/icons/Mail.svelte";
   import Input from "@/components/form/Input.svelte";
   import { post } from '@/lib/methods/api'
   import { addToast } from '@/stores/Toasts'
   import imgContact from '@/assets/images/contact-us.svg'
+  import SEO from "@/components/shared/SEO.svelte";
   
   let title = "Contacto"
   let breadcrumbs = [{
@@ -49,6 +50,11 @@
 
 	}
 </script>
+
+<SEO 
+  title="Contacto | Alaska Congelados" 
+  description="Ponte en contacto con nosotros. Estamos para ayudarte con tus compras de alimentos congelados."
+/>
 
 <InfoSection {title} {breadcrumbs}>
   <!-- <p class="font-medium">Llena el formulario y consultanos lo que necesites</p> -->

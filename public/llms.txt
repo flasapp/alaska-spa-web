@@ -1,0 +1,23 @@
+# Alaska Congelados
+
+## Descripción del Proyecto
+Alaska Congelados es una tienda online de venta de alimentos congelados en Montevideo, Uruguay. Ofrecemos servicio de delivery de una amplia variedad de productos: verduras, frutas, mariscos, pescados y comidas prontas.
+
+## Rutas Principales
+- / -> Página de Inicio. Productos destacados y categorías.
+- /nosotros -> Información sobre la empresa.
+- /delivery -> Información sobre zonas de envío, horarios y costos.
+- /horarios -> Horarios de atención del local físico (San José 1290).
+- /contacto -> Formulario de contacto.
+- /medios-de-pago -> Medios de pago aceptados (Efectivo, Tarjetas, Tickets).
+- /categorias/:nombre -> Listado de productos por categoría.
+- /productos/:nombre -> Detalle de producto.
+
+## Información Técnica
+- Tipo: Single Page Application (SPA).
+- Stack: Svelte, Vite.
+- Idioma: Español (es-UY).
+
+## Datos de Contacto
+- Local: San José 1290, Montevideo.
+- Horario: L-V 9-20hs, Sab 9-14hs.

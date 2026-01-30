@@ -10,6 +10,7 @@
   //Components
   import ProductCard from "@/components/shared/ProductCard.svelte";
   import FeaturedProducts from "@/components/sections/FeaturedProdcuts.svelte";
+  import SEO from "@/components/shared/SEO.svelte";
   
   const route = meta()  
   let product = {};
@@ -52,6 +53,10 @@
   });
 </script>
 {#if product.id}
+  <SEO 
+    title="{product.name} | Alaska Congelados" 
+    description={product.description || `Compra ${product.name} al mejor precio en Alaska Congelados.`}
+  />
   <ProductCard {product} {fullWidth} />
 {:else}
   <div class="flex flex-col gap-4 w-72 w-1/2 m-auto mt-16">

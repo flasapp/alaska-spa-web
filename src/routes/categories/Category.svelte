@@ -10,6 +10,7 @@
 	//Components
 	import ProductCard from "@/components/shared/ProductCard.svelte";
 	import EmptyCategory from "@/assets/images/empty_category.svg"
+	import SEO from "@/components/shared/SEO.svelte";
 
 	const route = meta();
 
@@ -87,6 +88,10 @@
 			<div class="skeleton h-6 w-14 rounded-md"></div>
 		</div>
 	{:then}
+		<SEO 
+			title="{category?.name} | Alaska Congelados" 
+			description={category?.description || `Explora nuestra selección de ${category?.name}. Calidad y buen precio.`}
+		/>
 		<div class="text-sm breadcrumbs py-4">
 			<ul>
 			<li><a href="/">Inicio</a></li>

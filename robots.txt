@@ -3,6 +3,9 @@ Disallow: /admin/
 Disallow: /carrito/
 Disallow: /checkout/
 Disallow: /usuario/
+Disallow: /perfil/
+Disallow: /pedidos/
+Disallow: /recuperar-usuario/
 Disallow: /backend/
 Allow: /
 

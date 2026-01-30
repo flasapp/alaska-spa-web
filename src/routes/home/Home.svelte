@@ -8,10 +8,16 @@
 	import Register from "@/components/sections/Register.svelte";
 	import RegisterLogin from "@/components/sections/RegisterLogin.svelte";
 	import CategoryHome from "@/components/sections/CategoryHome.svelte";
+	import SEO from "@/components/shared/SEO.svelte";
 
 	let isRegister = false;
 
 </script>
+
+<SEO 
+	title="Alaska Congelados | Inicio" 
+	description="Bienvenido a Alaska Congelados. La mejor calidad en alimentos congelados con envío a domicilio en Montevideo."
+/>
 
 <Header>
 	<CompanyInfo />
