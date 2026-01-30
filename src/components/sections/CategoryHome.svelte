@@ -1,17 +1,12 @@
 <script>
 	const { VITE_IMAGES_PATH } = import.meta.env;
 	import { onMount } from "svelte";
-	import gf from "@/assets/images/gf.jpg";
-	import veggie from "@/assets/images/veggie.jpg";
-	import ready from "@/assets/images/veggie.jpg";
 	import { get } from "@/lib/methods/api";
 	import GeneralStore from "@/stores/General";
 
 	const getFavCategories = async () => {
 		//Call API to Get Favorite Categories using the Service
-		const response = await get(
-			"categories?where[favorite]=1&offset=0&limit=6",
-		);
+		const response = await get("categories-featured");
 		return response;
 	};
 
@@ -26,8 +21,7 @@
 
 	onMount(async () => {
 		const resp = await getFavCategories();
-		categories = resp.data;
-		console.log(resp);
+		categories = resp;
 	});
 </script>
 
@@ -36,7 +30,10 @@
 	<div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-min">
 		{#each categories as category, i}
 			<a
-				class="group relative block overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:shadow-lg border-white aspect-square w-full {i === 0 || i === 5 ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1'}"
+				class="group relative block overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:shadow-lg border-white aspect-square w-full {i ===
+					0 || i === 5
+					? 'col-span-2 row-span-2'
+					: 'col-span-1 row-span-1'}"
 				href={`categorias/${category.name.replace(/[\s\/]/g, "-").toLowerCase()}?catSku=${category.id}`}
 				on:click={setCategory(category)}
 			>
@@ -56,15 +53,19 @@
 				<div
 					class="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
 				>
-					<h3 class="text-white text-lg md:text-2xl font-bold mb-1 leading-tight">
+					<h3
+						class="text-white text-lg md:text-2xl font-bold mb-1 leading-tight"
+					>
 						{category.name}
 					</h3>
 					{#if category.description}
-						<small class="text-gray-200 block line-clamp-2 md:line-clamp-none text-xs md:text-sm font-medium opacity-90">
+						<small
+							class="text-gray-200 block line-clamp-2 md:line-clamp-none text-xs md:text-sm font-medium opacity-90"
+						>
 							{category.description}
 						</small>
 					{/if}
-					
+
 					<div
 						class="flex items-center text-white text-xs font-bold mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
 					>
